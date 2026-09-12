@@ -1,6 +1,6 @@
-# STACK Policy Intelligence — GitHub App v0.5
+# Data Center Policy Intelligence — GitHub App v0.5
 
-This package converts the STACK Policy Intelligence workbook into a GitHub Pages-ready interactive app.
+This package converts the Data Center Policy Intelligence workbook into a GitHub Pages-ready interactive app.
 
 ## What this adds
 
@@ -12,7 +12,7 @@ This package converts the STACK Policy Intelligence workbook into a GitHub Pages
   - Water & Environmental
 - County-level Local intelligence layer built for HeatMap data
 - Worked Los Angeles County example
-- Trend, Forward Policy Risk, Confidence, STACK Posture and source basis fields
+- Trend, Forward Policy Risk, Confidence, Posture and source basis fields
 - Static web UI for GitHub Pages
 - JSON source-of-truth files and validation tests
 
