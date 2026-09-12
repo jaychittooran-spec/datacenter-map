@@ -23,9 +23,9 @@ function displayScore(value) {
 
 async function loadData() {
   const [states, counties, methodology] = await Promise.all([
-    fetch('./data/states.json').then(r => r.json()),
-    fetch('./data/counties.json').then(r => r.json()),
-    fetch('./data/methodology.json').then(r => r.json()),
+    fetch('./states.json').then(r => r.json()),
+    fetch('./counties.json').then(r => r.json()),
+    fetch('./methodology.json').then(r => r.json()),
   ]);
   return { states, counties, methodology };
 }
