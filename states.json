@@ -1,0 +1,1002 @@
+[
+  {
+    "state": "Alabama",
+    "abbr": "AL",
+    "scores": {
+      "power_energy": 4.0,
+      "incentives_tax": 4.0,
+      "local": 2.5,
+      "political_regulatory": 4.0,
+      "water_environmental": 4.0
+    },
+    "overall_score": 74,
+    "score_band": "Moderate",
+    "trend": "↓",
+    "forward_policy_risk": "MODERATE",
+    "confidence": "High",
+    "stack_posture": "B — SELECTIVE",
+    "policy_thesis": "Low-regulation state with favorable incentives, but local moratoria and utility requirements are rising.",
+    "source_basis": "BODI pp. 5; Multistate report pp. 5, 33",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Alaska",
+    "abbr": "AK",
+    "scores": {
+      "power_energy": 2.0,
+      "incentives_tax": 3.0,
+      "local": 3.0,
+      "political_regulatory": 4.0,
+      "water_environmental": 4.0
+    },
+    "overall_score": 64,
+    "score_band": "Moderate",
+    "trend": "→",
+    "forward_policy_risk": "MODERATE",
+    "confidence": "Low",
+    "stack_posture": "C — LIMIT",
+    "policy_thesis": "Supportive posture and no statewide SUT, but fragmented grid and infrastructure constraints dominate.",
+    "source_basis": "STACK West Strategy assessment",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Arizona",
+    "abbr": "AZ",
+    "scores": {
+      "power_energy": 2.5,
+      "incentives_tax": 2.0,
+      "local": 2.5,
+      "political_regulatory": 2.0,
+      "water_environmental": 2.5
+    },
+    "overall_score": 46,
+    "score_band": "Challenging",
+    "trend": "↓↓",
+    "forward_policy_risk": "HIGH",
+    "confidence": "High",
+    "stack_posture": "C — LIMIT",
+    "policy_thesis": "Three-year incentive moratorium, new large-load authority, and growing local restrictions materially weaken the market.",
+    "source_basis": "BODI p. 7; Multistate report pp. 3, 6-7",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Arkansas",
+    "abbr": "AR",
+    "scores": {
+      "power_energy": 3.5,
+      "incentives_tax": 5.0,
+      "local": 3.5,
+      "political_regulatory": 4.0,
+      "water_environmental": 4.0
+    },
+    "overall_score": 80,
+    "score_band": "Favorable",
+    "trend": "→",
+    "forward_policy_risk": "MODERATE",
+    "confidence": "Low",
+    "stack_posture": "A/B — SELECTIVE",
+    "policy_thesis": "Favorable incentive construct and state support; local pushback is emerging and source coverage is limited.",
+    "source_basis": "STACK West Strategy priority-market summary",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "California",
+    "abbr": "CA",
+    "scores": {
+      "power_energy": 2.0,
+      "incentives_tax": 1.5,
+      "local": 1.5,
+      "political_regulatory": 2.0,
+      "water_environmental": 1.5
+    },
+    "overall_score": 34,
+    "score_band": "Restrictive",
+    "trend": "↓↓",
+    "forward_policy_risk": "HIGH",
+    "confidence": "Medium",
+    "stack_posture": "D — PAUSE",
+    "policy_thesis": "No statewide SUT incentive, restrictive environmental policy, and accelerating local bans/moratoria.",
+    "source_basis": "STACK West assessment; Multistate report Appendix B",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Colorado",
+    "abbr": "CO",
+    "scores": {
+      "power_energy": 2.5,
+      "incentives_tax": 1.5,
+      "local": 2.0,
+      "political_regulatory": 2.0,
+      "water_environmental": 2.5
+    },
+    "overall_score": 42,
+    "score_band": "Challenging",
+    "trend": "↓",
+    "forward_policy_risk": "ELEVATED",
+    "confidence": "Medium",
+    "stack_posture": "C — LIMIT",
+    "policy_thesis": "No data-center SUT incentive and growing local zoning/moratorium activity; 2026 incentive legislation failed.",
+    "source_basis": "Multistate report pp. 7, 34; STACK West assessment",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Connecticut",
+    "abbr": "CT",
+    "scores": {
+      "power_energy": 3.0,
+      "incentives_tax": 2.5,
+      "local": 3.0,
+      "political_regulatory": 2.5,
+      "water_environmental": 3.0
+    },
+    "overall_score": 56,
+    "score_band": "Challenging",
+    "trend": "↓",
+    "forward_policy_risk": "ELEVATED",
+    "confidence": "Low",
+    "stack_posture": "C — LIMIT",
+    "policy_thesis": "Current environment is mixed; attempted closure of the incentive program signals weakening political support.",
+    "source_basis": "Multistate report p. 7",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Delaware",
+    "abbr": "DE",
+    "scores": {
+      "power_energy": 2.0,
+      "incentives_tax": 3.0,
+      "local": 3.0,
+      "political_regulatory": 2.5,
+      "water_environmental": 3.5
+    },
+    "overall_score": 56,
+    "score_band": "Challenging",
+    "trend": "↓",
+    "forward_policy_risk": "ELEVATED",
+    "confidence": "Medium",
+    "stack_posture": "C — LIMIT",
+    "policy_thesis": "New large-load tariff law shifts infrastructure costs and long-term obligations to large users.",
+    "source_basis": "Multistate report pp. 1-2, 8",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Florida",
+    "abbr": "FL",
+    "scores": {
+      "power_energy": 3.5,
+      "incentives_tax": 3.0,
+      "local": 2.0,
+      "political_regulatory": 3.5,
+      "water_environmental": 3.0
+    },
+    "overall_score": 60,
+    "score_band": "Moderate",
+    "trend": "↓",
+    "forward_policy_risk": "ELEVATED",
+    "confidence": "Medium",
+    "stack_posture": "B — SELECTIVE",
+    "policy_thesis": "State preserves local authority while local moratoria spread across major jurisdictions.",
+    "source_basis": "Multistate report pp. 8, 34, 41",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Georgia",
+    "abbr": "GA",
+    "scores": {
+      "power_energy": 2.5,
+      "incentives_tax": 5.0,
+      "local": 1.5,
+      "political_regulatory": 4.0,
+      "water_environmental": 3.0
+    },
+    "overall_score": 64,
+    "score_band": "Moderate",
+    "trend": "↓",
+    "forward_policy_risk": "ELEVATED",
+    "confidence": "High",
+    "stack_posture": "C — LIMIT",
+    "policy_thesis": "Strong tax incentive is offset by adverse power terms and exceptionally broad local opposition.",
+    "source_basis": "BODI p. 8; Multistate report Appendix B",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Hawaii",
+    "abbr": "HI",
+    "scores": {
+      "power_energy": 1.5,
+      "incentives_tax": 2.0,
+      "local": 3.0,
+      "political_regulatory": 3.0,
+      "water_environmental": 4.0
+    },
+    "overall_score": 54,
+    "score_band": "Challenging",
+    "trend": "→",
+    "forward_policy_risk": "MODERATE",
+    "confidence": "Low",
+    "stack_posture": "D — PAUSE",
+    "policy_thesis": "Policy scrutiny is limited today, but isolated grids create a structurally difficult large-load environment.",
+    "source_basis": "Multistate report p. 10; STACK West assessment",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Idaho",
+    "abbr": "ID",
+    "scores": {
+      "power_energy": 4.0,
+      "incentives_tax": 5.0,
+      "local": 3.5,
+      "political_regulatory": 3.5,
+      "water_environmental": 3.0
+    },
+    "overall_score": 76,
+    "score_band": "Moderate",
+    "trend": "↓",
+    "forward_policy_risk": "ELEVATED",
+    "confidence": "Medium",
+    "stack_posture": "A/B — SELECTIVE",
+    "policy_thesis": "Full SUT exemption and workable power backdrop remain attractive, while water and legislative scrutiny are increasing.",
+    "source_basis": "STACK West Strategy pp. 8, 10; Multistate report p. 10",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Illinois",
+    "abbr": "IL",
+    "scores": {
+      "power_energy": 2.5,
+      "incentives_tax": 2.0,
+      "local": 2.0,
+      "political_regulatory": 2.0,
+      "water_environmental": 2.5
+    },
+    "overall_score": 44,
+    "score_band": "Challenging",
+    "trend": "↓↓",
+    "forward_policy_risk": "HIGH",
+    "confidence": "Medium",
+    "stack_posture": "C — LIMIT",
+    "policy_thesis": "State incentive processing is paused and the governor has outlined a broad restrictive framework; local action is rising.",
+    "source_basis": "Multistate report pp. 10-11, 43",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Indiana",
+    "abbr": "IN",
+    "scores": {
+      "power_energy": 2.5,
+      "incentives_tax": 4.5,
+      "local": 1.5,
+      "political_regulatory": 3.5,
+      "water_environmental": 4.0
+    },
+    "overall_score": 64,
+    "score_band": "Moderate",
+    "trend": "↓",
+    "forward_policy_risk": "ELEVATED",
+    "confidence": "High",
+    "stack_posture": "B/C — SELECTIVE",
+    "policy_thesis": "Long-duration incentives remain attractive, but restrictive power terms and widespread local moratoria create execution risk.",
+    "source_basis": "BODI p. 9; Multistate report pp. 11, 42-43",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Iowa",
+    "abbr": "IA",
+    "scores": {
+      "power_energy": 3.5,
+      "incentives_tax": 4.0,
+      "local": 2.0,
+      "political_regulatory": 3.5,
+      "water_environmental": 4.0
+    },
+    "overall_score": 68,
+    "score_band": "Moderate",
+    "trend": "↓",
+    "forward_policy_risk": "ELEVATED",
+    "confidence": "Medium",
+    "stack_posture": "B — SELECTIVE",
+    "policy_thesis": "State incentive framework remains, but local moratoria have proliferated across more than a dozen counties.",
+    "source_basis": "Multistate report pp. 11-12, 43-44",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Kansas",
+    "abbr": "KS",
+    "scores": {
+      "power_energy": 3.5,
+      "incentives_tax": 5.0,
+      "local": 1.5,
+      "political_regulatory": 4.5,
+      "water_environmental": 4.0
+    },
+    "overall_score": 74,
+    "score_band": "Moderate",
+    "trend": "↓",
+    "forward_policy_risk": "MODERATE",
+    "confidence": "High",
+    "stack_posture": "A/B — SELECTIVE",
+    "policy_thesis": "Excellent incentive and supportive state posture are offset by strong local opposition and moratoria.",
+    "source_basis": "BODI p. 10; STACK West Strategy Kansas",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Kentucky",
+    "abbr": "KY",
+    "scores": {
+      "power_energy": 3.0,
+      "incentives_tax": 3.0,
+      "local": 2.0,
+      "political_regulatory": 2.0,
+      "water_environmental": 2.0
+    },
+    "overall_score": 48,
+    "score_band": "Challenging",
+    "trend": "↓↓",
+    "forward_policy_risk": "HIGH",
+    "confidence": "Medium",
+    "stack_posture": "C — LIMIT",
+    "policy_thesis": "Governor-directed ratepayer/environment protections and a growing local moratorium wave create substantial forward risk.",
+    "source_basis": "Multistate report pp. 3, 12-13, 45-46",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Louisiana",
+    "abbr": "LA",
+    "scores": {
+      "power_energy": 4.0,
+      "incentives_tax": 5.0,
+      "local": 4.5,
+      "political_regulatory": 4.5,
+      "water_environmental": 4.0
+    },
+    "overall_score": 88,
+    "score_band": "Favorable",
+    "trend": "→",
+    "forward_policy_risk": "LOW",
+    "confidence": "High",
+    "stack_posture": "A — PRIORITIZE",
+    "policy_thesis": "Strong incentives, favorable state posture, and generally permissive local conditions remain a leading policy combination.",
+    "source_basis": "BODI p. 11; Multistate report p. 13",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Maine",
+    "abbr": "ME",
+    "scores": {
+      "power_energy": 3.0,
+      "incentives_tax": 1.5,
+      "local": 2.0,
+      "political_regulatory": 2.5,
+      "water_environmental": 3.0
+    },
+    "overall_score": 48,
+    "score_band": "Challenging",
+    "trend": "↓",
+    "forward_policy_risk": "ELEVATED",
+    "confidence": "Medium",
+    "stack_posture": "C — LIMIT",
+    "policy_thesis": "State removed data centers from incentive programs and local moratoria expanded after the statewide moratorium veto.",
+    "source_basis": "Multistate report pp. 13, 46",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Maryland",
+    "abbr": "MD",
+    "scores": {
+      "power_energy": 3.0,
+      "incentives_tax": 2.5,
+      "local": 2.0,
+      "political_regulatory": 3.0,
+      "water_environmental": 3.0
+    },
+    "overall_score": 54,
+    "score_band": "Challenging",
+    "trend": "↓",
+    "forward_policy_risk": "ELEVATED",
+    "confidence": "Medium",
+    "stack_posture": "C — LIMIT",
+    "policy_thesis": "Statewide moratorium failed, but incentive restrictions and significant county-level pauses create a challenging local environment.",
+    "source_basis": "Multistate report pp. 14, 36",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Massachusetts",
+    "abbr": "MA",
+    "scores": {
+      "power_energy": 2.5,
+      "incentives_tax": 2.0,
+      "local": 3.0,
+      "political_regulatory": 2.0,
+      "water_environmental": 2.0
+    },
+    "overall_score": 46,
+    "score_band": "Challenging",
+    "trend": "↓↓",
+    "forward_policy_risk": "HIGH",
+    "confidence": "Medium",
+    "stack_posture": "C — LIMIT",
+    "policy_thesis": "State paused applications while developing stronger ratepayer, clean-energy, environmental, and community protections.",
+    "source_basis": "Multistate report p. 14",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Michigan",
+    "abbr": "MI",
+    "scores": {
+      "power_energy": 3.0,
+      "incentives_tax": 3.5,
+      "local": 3.0,
+      "political_regulatory": 3.0,
+      "water_environmental": 3.0
+    },
+    "overall_score": 62,
+    "score_band": "Moderate",
+    "trend": "↓",
+    "forward_policy_risk": "ELEVATED",
+    "confidence": "Medium",
+    "stack_posture": "B/C — SELECTIVE",
+    "policy_thesis": "Incentives remain protected by the governor, but repeal and moratorium packages show meaningful legislative pressure.",
+    "source_basis": "Multistate report pp. 14-15",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Minnesota",
+    "abbr": "MN",
+    "scores": {
+      "power_energy": 3.0,
+      "incentives_tax": 2.5,
+      "local": 2.0,
+      "political_regulatory": 3.0,
+      "water_environmental": 3.0
+    },
+    "overall_score": 54,
+    "score_band": "Challenging",
+    "trend": "↓",
+    "forward_policy_risk": "ELEVATED",
+    "confidence": "Medium",
+    "stack_posture": "C — LIMIT",
+    "policy_thesis": "Electricity SUT exemption was eliminated and multiple local moratoria are active despite statewide moratorium bills failing.",
+    "source_basis": "Multistate report pp. 15, 36",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Mississippi",
+    "abbr": "MS",
+    "scores": {
+      "power_energy": 3.5,
+      "incentives_tax": 4.0,
+      "local": 4.0,
+      "political_regulatory": 4.0,
+      "water_environmental": 4.0
+    },
+    "overall_score": 78,
+    "score_band": "Moderate",
+    "trend": "→",
+    "forward_policy_risk": "LOW",
+    "confidence": "Low",
+    "stack_posture": "A/B — SELECTIVE",
+    "policy_thesis": "Limited adverse activity in the provided materials; current tax and local environment appear comparatively stable.",
+    "source_basis": "Multistate report p. 15",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Missouri",
+    "abbr": "MO",
+    "scores": {
+      "power_energy": 3.5,
+      "incentives_tax": 3.0,
+      "local": 3.0,
+      "political_regulatory": 3.0,
+      "water_environmental": 4.0
+    },
+    "overall_score": 66,
+    "score_band": "Moderate",
+    "trend": "↓",
+    "forward_policy_risk": "MODERATE",
+    "confidence": "Medium",
+    "stack_posture": "B — SELECTIVE",
+    "policy_thesis": "Innovation-zone incentives now exclude data centers and restrictive rural siting proposals indicate rising scrutiny.",
+    "source_basis": "Multistate report p. 16",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Montana",
+    "abbr": "MT",
+    "scores": {
+      "power_energy": 4.0,
+      "incentives_tax": 4.5,
+      "local": 3.0,
+      "political_regulatory": 4.0,
+      "water_environmental": 4.0
+    },
+    "overall_score": 78,
+    "score_band": "Moderate",
+    "trend": "↓",
+    "forward_policy_risk": "MODERATE",
+    "confidence": "Medium",
+    "stack_posture": "A/B — SELECTIVE",
+    "policy_thesis": "No statewide SUT and supportive BTM posture remain attractive, with emerging local opposition and tariff scrutiny.",
+    "source_basis": "STACK West Strategy Montana; Multistate report p. 36",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Nebraska",
+    "abbr": "NE",
+    "scores": {
+      "power_energy": 3.0,
+      "incentives_tax": 1.5,
+      "local": 3.0,
+      "political_regulatory": 2.0,
+      "water_environmental": 3.0
+    },
+    "overall_score": 50,
+    "score_band": "Challenging",
+    "trend": "↓↓",
+    "forward_policy_risk": "HIGH",
+    "confidence": "Medium",
+    "stack_posture": "C — LIMIT",
+    "policy_thesis": "Governor ended access to ImagiNE Nebraska incentives and launched a resource-impact task force.",
+    "source_basis": "Multistate report p. 16; STACK West assessment",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Nevada",
+    "abbr": "NV",
+    "scores": {
+      "power_energy": 3.0,
+      "incentives_tax": 4.0,
+      "local": 2.5,
+      "political_regulatory": 3.0,
+      "water_environmental": 3.0
+    },
+    "overall_score": 62,
+    "score_band": "Moderate",
+    "trend": "↓",
+    "forward_policy_risk": "ELEVATED",
+    "confidence": "Medium",
+    "stack_posture": "B — SELECTIVE",
+    "policy_thesis": "Meaningful abatements remain, but Reno moratorium and election-driven scrutiny increase uncertainty.",
+    "source_basis": "STACK West assessment; Multistate report p. 37",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "New Hampshire",
+    "abbr": "NH",
+    "scores": {
+      "power_energy": 3.5,
+      "incentives_tax": 3.0,
+      "local": 4.0,
+      "political_regulatory": 4.0,
+      "water_environmental": 4.0
+    },
+    "overall_score": 74,
+    "score_band": "Moderate",
+    "trend": "→",
+    "forward_policy_risk": "LOW",
+    "confidence": "Medium",
+    "stack_posture": "B — SELECTIVE",
+    "policy_thesis": "Statewide moratorium failed and no major current restriction is identified; incentive effort also failed.",
+    "source_basis": "Multistate report p. 17",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "New Jersey",
+    "abbr": "NJ",
+    "scores": {
+      "power_energy": 2.0,
+      "incentives_tax": 1.5,
+      "local": 1.0,
+      "political_regulatory": 2.0,
+      "water_environmental": 3.0
+    },
+    "overall_score": 38,
+    "score_band": "Restrictive",
+    "trend": "↓↓",
+    "forward_policy_risk": "HIGH",
+    "confidence": "High",
+    "stack_posture": "D — PAUSE",
+    "policy_thesis": "Tax credits were eliminated, a strict large-load framework was enacted, and local bans/restrictions are widespread.",
+    "source_basis": "Multistate report pp. 1-2, 17, 44-45",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "New Mexico",
+    "abbr": "NM",
+    "scores": {
+      "power_energy": 4.0,
+      "incentives_tax": 2.5,
+      "local": 3.0,
+      "political_regulatory": 4.0,
+      "water_environmental": 3.0
+    },
+    "overall_score": 66,
+    "score_band": "Moderate",
+    "trend": "↓↓",
+    "forward_policy_risk": "HIGH",
+    "confidence": "High",
+    "stack_posture": "B — SELECTIVE",
+    "policy_thesis": "Current microgrid flexibility is strong, but a statewide moratorium and microgrid restrictions are credible 2027 risks.",
+    "source_basis": "BODI p. 12; Multistate report pp. 17-18",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "New York",
+    "abbr": "NY",
+    "scores": {
+      "power_energy": 2.0,
+      "incentives_tax": 2.0,
+      "local": 2.5,
+      "political_regulatory": 1.0,
+      "water_environmental": 1.5
+    },
+    "overall_score": 36,
+    "score_band": "Restrictive",
+    "trend": "↓↓",
+    "forward_policy_risk": "HIGH",
+    "confidence": "High",
+    "stack_posture": "D — PAUSE",
+    "policy_thesis": "Statewide environmental-permit moratorium is in force for hyperscale projects and further tax/regulatory restrictions are expected.",
+    "source_basis": "Multistate report pp. 18-19",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "North Carolina",
+    "abbr": "NC",
+    "scores": {
+      "power_energy": 3.0,
+      "incentives_tax": 2.5,
+      "local": 1.0,
+      "political_regulatory": 2.5,
+      "water_environmental": 3.0
+    },
+    "overall_score": 48,
+    "score_band": "Challenging",
+    "trend": "↓↓",
+    "forward_policy_risk": "HIGH",
+    "confidence": "High",
+    "stack_posture": "C/D — LIMIT",
+    "policy_thesis": "Electricity SUT exemption was repealed and more than 30 local jurisdictions have enacted moratoria or bans.",
+    "source_basis": "Multistate report pp. 19-20, 46-47",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "North Dakota",
+    "abbr": "ND",
+    "scores": {
+      "power_energy": 4.0,
+      "incentives_tax": 4.5,
+      "local": 4.0,
+      "political_regulatory": 4.5,
+      "water_environmental": 4.0
+    },
+    "overall_score": 84,
+    "score_band": "Favorable",
+    "trend": "→",
+    "forward_policy_risk": "MODERATE",
+    "confidence": "Medium",
+    "stack_posture": "A — PRIORITIZE",
+    "policy_thesis": "Favorable incentives, supportive leadership and BTM using local gas remain attractive; interim study is a watch item.",
+    "source_basis": "STACK West Strategy North Dakota",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Ohio",
+    "abbr": "OH",
+    "scores": {
+      "power_energy": 3.0,
+      "incentives_tax": 2.5,
+      "local": 1.5,
+      "political_regulatory": 2.5,
+      "water_environmental": 4.0
+    },
+    "overall_score": 54,
+    "score_band": "Challenging",
+    "trend": "↓↓",
+    "forward_policy_risk": "HIGH",
+    "confidence": "High",
+    "stack_posture": "C — LIMIT",
+    "policy_thesis": "Permissive BTM is offset by incentive uncertainty, restrictive tariff treatment and the nation’s densest local restriction activity.",
+    "source_basis": "BODI p. 13; Multistate report pp. 20-21, 47-48",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Oklahoma",
+    "abbr": "OK",
+    "scores": {
+      "power_energy": 2.5,
+      "incentives_tax": 4.0,
+      "local": 3.0,
+      "political_regulatory": 3.0,
+      "water_environmental": 2.0
+    },
+    "overall_score": 58,
+    "score_band": "Challenging",
+    "trend": "↓",
+    "forward_policy_risk": "ELEVATED",
+    "confidence": "High",
+    "stack_posture": "B/C — SELECTIVE",
+    "policy_thesis": "Longstanding incentives remain, but new ratepayer-protection and groundwater/cooling rules materially tighten development conditions.",
+    "source_basis": "BODI p. 14; Multistate report pp. 21-22",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Oregon",
+    "abbr": "OR",
+    "scores": {
+      "power_energy": 1.5,
+      "incentives_tax": 3.0,
+      "local": 2.0,
+      "political_regulatory": 2.0,
+      "water_environmental": 2.0
+    },
+    "overall_score": 42,
+    "score_band": "Challenging",
+    "trend": "↓",
+    "forward_policy_risk": "HIGH",
+    "confidence": "High",
+    "stack_posture": "C/D — LIMIT",
+    "policy_thesis": "Highly adverse power tariff, paused property-tax incentives, difficult entitlements and restrictive trajectory.",
+    "source_basis": "BODI p. 15; STACK West assessment",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Pennsylvania",
+    "abbr": "PA",
+    "scores": {
+      "power_energy": 1.5,
+      "incentives_tax": 3.0,
+      "local": 2.5,
+      "political_regulatory": 1.5,
+      "water_environmental": 2.5
+    },
+    "overall_score": 44,
+    "score_band": "Challenging",
+    "trend": "↓↓",
+    "forward_policy_risk": "HIGH",
+    "confidence": "High",
+    "stack_posture": "D — PAUSE",
+    "policy_thesis": "Binding GRID requirements now condition permitting and incentives and materially increase infrastructure obligations.",
+    "source_basis": "BODI p. 16; Multistate report pp. 22-24",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Rhode Island",
+    "abbr": "RI",
+    "scores": {
+      "power_energy": 3.5,
+      "incentives_tax": 2.5,
+      "local": 2.5,
+      "political_regulatory": 3.5,
+      "water_environmental": 4.0
+    },
+    "overall_score": 64,
+    "score_band": "Moderate",
+    "trend": "→",
+    "forward_policy_risk": "MODERATE",
+    "confidence": "Low",
+    "stack_posture": "B — SELECTIVE",
+    "policy_thesis": "Proposed 30-year incentive did not advance; one local outright ban is identified, leaving a mixed but not broadly restrictive picture.",
+    "source_basis": "Multistate report pp. 24, 38",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "South Carolina",
+    "abbr": "SC",
+    "scores": {
+      "power_energy": 3.5,
+      "incentives_tax": 4.0,
+      "local": 3.0,
+      "political_regulatory": 3.5,
+      "water_environmental": 4.0
+    },
+    "overall_score": 72,
+    "score_band": "Moderate",
+    "trend": "→",
+    "forward_policy_risk": "MODERATE",
+    "confidence": "Medium",
+    "stack_posture": "B — SELECTIVE",
+    "policy_thesis": "Multiple restrictive proposals failed; current statewide environment remains relatively open with some local moratorium activity.",
+    "source_basis": "Multistate report pp. 24-25, 38",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "South Dakota",
+    "abbr": "SD",
+    "scores": {
+      "power_energy": 3.0,
+      "incentives_tax": 2.5,
+      "local": 3.0,
+      "political_regulatory": 2.5,
+      "water_environmental": 2.5
+    },
+    "overall_score": 54,
+    "score_band": "Challenging",
+    "trend": "↓",
+    "forward_policy_risk": "ELEVATED",
+    "confidence": "Medium",
+    "stack_posture": "C — LIMIT",
+    "policy_thesis": "2026 law codified full-cost and water protections while preserving local control; incentive and moratorium bills failed.",
+    "source_basis": "Multistate report pp. 25-26",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Tennessee",
+    "abbr": "TN",
+    "scores": {
+      "power_energy": 3.5,
+      "incentives_tax": 3.5,
+      "local": 1.5,
+      "political_regulatory": 3.5,
+      "water_environmental": 3.5
+    },
+    "overall_score": 62,
+    "score_band": "Moderate",
+    "trend": "↓",
+    "forward_policy_risk": "ELEVATED",
+    "confidence": "Medium",
+    "stack_posture": "B/C — SELECTIVE",
+    "policy_thesis": "State-level environment is less defined, but local moratoria and restrictive zoning have spread across major jurisdictions.",
+    "source_basis": "Multistate report pp. 38, 48",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Texas",
+    "abbr": "TX",
+    "scores": {
+      "power_energy": 3.0,
+      "incentives_tax": 4.5,
+      "local": 4.0,
+      "political_regulatory": 2.0,
+      "water_environmental": 3.5
+    },
+    "overall_score": 68,
+    "score_band": "Moderate",
+    "trend": "↓↓",
+    "forward_policy_risk": "HIGH",
+    "confidence": "High",
+    "stack_posture": "B — SELECTIVE",
+    "policy_thesis": "Strong current tax and local-development advantages remain, but state intervention has sharply increased power and forward policy risk.",
+    "source_basis": "BODI p. 17; Multistate report pp. 26-27",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Utah",
+    "abbr": "UT",
+    "scores": {
+      "power_energy": 4.0,
+      "incentives_tax": 3.5,
+      "local": 3.5,
+      "political_regulatory": 2.5,
+      "water_environmental": 2.5
+    },
+    "overall_score": 64,
+    "score_band": "Moderate",
+    "trend": "↓↓",
+    "forward_policy_risk": "HIGH",
+    "confidence": "High",
+    "stack_posture": "B — SELECTIVE",
+    "policy_thesis": "BTM remains favorable, but incentive restrictions, water reporting and the governor’s higher-bar framework point to tighter 2027 policy.",
+    "source_basis": "Multistate report pp. 26-28; STACK West assessment",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Vermont",
+    "abbr": "VT",
+    "scores": {
+      "power_energy": 3.0,
+      "incentives_tax": 2.5,
+      "local": 4.0,
+      "political_regulatory": 3.5,
+      "water_environmental": 3.5
+    },
+    "overall_score": 66,
+    "score_band": "Moderate",
+    "trend": "→",
+    "forward_policy_risk": "MODERATE",
+    "confidence": "Medium",
+    "stack_posture": "B — SELECTIVE",
+    "policy_thesis": "Moratorium and gross-receipts financing proposals failed or were vetoed, leaving current policy less restrictive than proposals suggest.",
+    "source_basis": "Multistate report p. 28",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Virginia",
+    "abbr": "VA",
+    "scores": {
+      "power_energy": 2.5,
+      "incentives_tax": 3.0,
+      "local": 2.0,
+      "political_regulatory": 3.0,
+      "water_environmental": 3.0
+    },
+    "overall_score": 54,
+    "score_band": "Challenging",
+    "trend": "↓",
+    "forward_policy_risk": "ELEVATED",
+    "confidence": "High",
+    "stack_posture": "B/C — SELECTIVE",
+    "policy_thesis": "Mature market precedent is offset by higher power cost allocation, loss of by-right pathways and new tax/environmental conditions.",
+    "source_basis": "BODI p. 18; Multistate report pp. 28-31",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Washington",
+    "abbr": "WA",
+    "scores": {
+      "power_energy": 2.0,
+      "incentives_tax": 3.0,
+      "local": 2.0,
+      "political_regulatory": 2.5,
+      "water_environmental": 2.0
+    },
+    "overall_score": 46,
+    "score_band": "Challenging",
+    "trend": "↓",
+    "forward_policy_risk": "HIGH",
+    "confidence": "High",
+    "stack_posture": "C — LIMIT",
+    "policy_thesis": "Clean-energy constraints, narrowed tax benefits and multiple local pauses create a difficult and worsening environment.",
+    "source_basis": "BODI p. 19; Multistate report pp. 31, 39",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "West Virginia",
+    "abbr": "WV",
+    "scores": {
+      "power_energy": 4.0,
+      "incentives_tax": 4.5,
+      "local": 4.0,
+      "political_regulatory": 4.5,
+      "water_environmental": 4.0
+    },
+    "overall_score": 84,
+    "score_band": "Favorable",
+    "trend": "→",
+    "forward_policy_risk": "LOW",
+    "confidence": "Medium",
+    "stack_posture": "A — PRIORITIZE",
+    "policy_thesis": "State leadership prioritizes data-center attraction with supportive entitlement and BTM posture; several additional incentives were proposed.",
+    "source_basis": "STACK West priority summary; Multistate report pp. 31-32",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Wisconsin",
+    "abbr": "WI",
+    "scores": {
+      "power_energy": 2.0,
+      "incentives_tax": 5.0,
+      "local": 1.5,
+      "political_regulatory": 3.0,
+      "water_environmental": 4.0
+    },
+    "overall_score": 62,
+    "score_band": "Moderate",
+    "trend": "↓↓",
+    "forward_policy_risk": "HIGH",
+    "confidence": "High",
+    "stack_posture": "B/C — SELECTIVE",
+    "policy_thesis": "Excellent incentives remain, but a punitive large-load tariff and rapid growth in local moratoria materially increase execution risk.",
+    "source_basis": "BODI p. 20; Multistate report pp. 32, 40",
+    "status": "Provisional v0.3"
+  },
+  {
+    "state": "Wyoming",
+    "abbr": "WY",
+    "scores": {
+      "power_energy": 4.5,
+      "incentives_tax": 5.0,
+      "local": 4.5,
+      "political_regulatory": 4.0,
+      "water_environmental": 4.0
+    },
+    "overall_score": 88,
+    "score_band": "Favorable",
+    "trend": "↓",
+    "forward_policy_risk": "ELEVATED",
+    "confidence": "High",
+    "stack_posture": "A — PRIORITIZE",
+    "policy_thesis": "Full SUT exemption, strong BTM flexibility and receptive development conditions remain attractive; 2027 recommendations create forward risk.",
+    "source_basis": "STACK West Strategy Wyoming",
+    "status": "Provisional v0.3"
+  }
+]

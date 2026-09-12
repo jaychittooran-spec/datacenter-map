@@ -1,0 +1,139 @@
+{
+  "version": "v0.5",
+  "state_score_formula": "mean(power_energy, incentives_tax, local, political_regulatory, water_environmental) * 20",
+  "state_dimensions": [
+    {
+      "key": "power_energy",
+      "label": "Power & Energy",
+      "weight": 0.2
+    },
+    {
+      "key": "incentives_tax",
+      "label": "Incentives & Tax",
+      "weight": 0.2
+    },
+    {
+      "key": "local",
+      "label": "Local",
+      "weight": 0.2
+    },
+    {
+      "key": "political_regulatory",
+      "label": "Political & Regulatory",
+      "weight": 0.2
+    },
+    {
+      "key": "water_environmental",
+      "label": "Water & Environmental",
+      "weight": 0.2
+    }
+  ],
+  "state_score_bands": [
+    {
+      "min": 80,
+      "max": 100,
+      "label": "Favorable"
+    },
+    {
+      "min": 60,
+      "max": 79,
+      "label": "Moderate"
+    },
+    {
+      "min": 40,
+      "max": 59,
+      "label": "Challenging"
+    },
+    {
+      "min": 0,
+      "max": 39,
+      "label": "Restrictive"
+    }
+  ],
+  "county_local_formula": "community_score * 0.40 + local_policy_entitlements_score * 0.50 + development_precedent_score * 0.10",
+  "county_local_components": [
+    {
+      "key": "community_score",
+      "label": "Community Opposition",
+      "weight": 0.4,
+      "source": "HeatMap Opposition Intensity Index"
+    },
+    {
+      "key": "local_policy_entitlements_score",
+      "label": "Local Policy & Entitlements",
+      "weight": 0.5,
+      "source": "Analyst scoring of moratoria, bans, zoning, permitting, litigation"
+    },
+    {
+      "key": "development_precedent_score",
+      "label": "Development Precedent",
+      "weight": 0.1,
+      "source": "Operating/planned data-center market evidence"
+    }
+  ],
+  "heatmap_index_to_community_score": [
+    {
+      "min": 0,
+      "max": 20,
+      "score": 5.0
+    },
+    {
+      "min": 21,
+      "max": 30,
+      "score": 4.5
+    },
+    {
+      "min": 31,
+      "max": 40,
+      "score": 4.0
+    },
+    {
+      "min": 41,
+      "max": 50,
+      "score": 3.5
+    },
+    {
+      "min": 51,
+      "max": 60,
+      "score": 3.0
+    },
+    {
+      "min": 61,
+      "max": 70,
+      "score": 2.5
+    },
+    {
+      "min": 71,
+      "max": 80,
+      "score": 2.0
+    },
+    {
+      "min": 81,
+      "max": 90,
+      "score": 1.5
+    },
+    {
+      "min": 91,
+      "max": 100,
+      "score": 1.0
+    }
+  ],
+  "trend_labels": [
+    "↑↑",
+    "↑",
+    "→",
+    "↓",
+    "↓↓"
+  ],
+  "forward_policy_risk_labels": [
+    "LOW",
+    "MODERATE",
+    "ELEVATED",
+    "HIGH"
+  ],
+  "confidence_labels": [
+    "High",
+    "Medium",
+    "Low"
+  ]
+}
