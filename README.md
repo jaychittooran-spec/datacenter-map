@@ -1,4 +1,4 @@
-# STACK Policy Intelligence v0.6
+# STACK Policy Intelligence v0.6.1
 
 Interactive U.S. data-center policy intelligence prototype.
 
@@ -26,7 +26,7 @@ This release is intentionally **flat/root-level** for easy browser upload:
 - `methodology.json`
 - `events.json`
 
-## v0.6 additions
+## v0.6.1 additions
 - Geographic U.S. map using `us-atlas` + D3/TopoJSON from jsDelivr
 - Preserved 50-state comparison tile view
 - Richer State Intelligence Card
@@ -38,3 +38,9 @@ This release is intentionally **flat/root-level** for easy browser upload:
 
 ## Deployment
 GitHub Pages can publish directly from the root of the `policy-v1` branch. Upload all root files and commit to that branch; Pages should republish automatically.
+
+
+## v0.6.1 hotfix
+- Removes external D3 dependency for the U.S. map.
+- Uses the repository's existing `src/states-albers-10m.json` and `src/topojson-client.min.js`.
+- Hardens executive intelligence rendering and tightens the top layout.

@@ -90,42 +90,42 @@ function renderTileMap(states, selectedAbbr, onSelect, layerKey='overall') {
 }
 
 let geoCache = null;
+function geoPathFromGeometry(geometry) {
+  const ringPath = ring => ring.map((pt,i) => `${i ? 'L' : 'M'}${pt[0]},${pt[1]}`).join(' ') + ' Z';
+  if (!geometry) return '';
+  if (geometry.type === 'Polygon') return geometry.coordinates.map(ringPath).join(' ');
+  if (geometry.type === 'MultiPolygon') return geometry.coordinates.flatMap(poly => poly.map(ringPath)).join(' ');
+  return '';
+}
 async function renderGeoMap(states, selectedAbbr, onSelect, layerKey='overall') {
   const el = document.getElementById('geoMap');
   const tooltip = document.getElementById('mapTooltip');
   const byName = Object.fromEntries(states.map(s => [s.state, s]));
   try {
-    if (!geoCache) geoCache = await d3.json('https://cdn.jsdelivr.net/npm/us-atlas@3/states-albers-10m.json');
-    const features = topojson.feature(geoCache, geoCache.objects.states).features;
+    if (!window.topojson) throw new Error('TopoJSON helper unavailable');
+    if (!geoCache) geoCache = await fetch('./src/states-albers-10m.json').then(r => { if(!r.ok) throw new Error(`Map geometry ${r.status}`); return r.json(); });
+    const features = window.topojson.feature(geoCache, geoCache.objects.states).features;
     el.innerHTML = '';
-    const svg = d3.select(el).append('svg').attr('viewBox', '0 0 975 610').attr('role','img').attr('aria-label','U.S. state policy map');
-    const path = d3.geoPath();
-    svg.append('g').selectAll('path').data(features).join('path')
-      .attr('d', path)
-      .attr('class', d => {
-        const st = byName[d.properties.name];
-        if (!st) return 'state-shape no-data';
-        return `state-shape ${st.confidence === 'Low' ? 'low-confidence' : ''} ${st.abbr === selectedAbbr ? 'selected' : ''}`;
-      })
-      .attr('fill', d => {
-        const st = byName[d.properties.name];
-        return st ? colorForScore(scoreForLayer(st, layerKey)) : '#dbe3ec';
-      })
-      .on('mousemove', (event, d) => {
-        const st = byName[d.properties.name];
-        if (!st) return;
-        const score = scoreForLayer(st, layerKey);
-        tooltip.hidden = false;
-        tooltip.innerHTML = `<b>${st.state}</b><span>${score} · ${scoreBand(score)}</span><small>${st.confidence} confidence · Trend ${st.trend} · ${st.forward_policy_risk} forward risk</small>`;
-        const rect = el.getBoundingClientRect();
-        tooltip.style.left = `${Math.min(event.clientX - rect.left + 14, rect.width - 230)}px`;
-        tooltip.style.top = `${Math.max(event.clientY - rect.top - 20, 8)}px`;
-      })
-      .on('mouseleave', () => { tooltip.hidden = true; })
-      .on('click', (_, d) => { const st = byName[d.properties.name]; if (st) onSelect(st.abbr); });
-
-    svg.append('path').datum(topojson.mesh(geoCache, geoCache.objects.states, (a,b) => a !== b))
-      .attr('class','state-borders').attr('d',path);
+    const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+    svg.setAttribute('viewBox','0 0 975 610'); svg.setAttribute('role','img'); svg.setAttribute('aria-label','U.S. state policy map');
+    features.forEach(f => {
+      const st = byName[f.properties.name];
+      const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+      path.setAttribute('d', geoPathFromGeometry(f.geometry));
+      path.setAttribute('class', `state-shape ${!st ? 'no-data' : ''} ${st?.confidence === 'Low' ? 'low-confidence' : ''} ${st?.abbr === selectedAbbr ? 'selected' : ''}`);
+      path.setAttribute('fill', st ? colorForScore(scoreForLayer(st, layerKey)) : '#dbe3ec');
+      if (st) {
+        path.addEventListener('mousemove', event => {
+          const score = scoreForLayer(st, layerKey); tooltip.hidden=false;
+          tooltip.innerHTML=`<b>${st.state}</b><span>${score} · ${scoreBand(score)}</span><small>${st.confidence} confidence · Trend ${st.trend} · ${st.forward_policy_risk} forward risk</small>`;
+          const rect=el.getBoundingClientRect(); tooltip.style.left=`${Math.min(event.clientX-rect.left+14, rect.width-230)}px`; tooltip.style.top=`${Math.max(event.clientY-rect.top-20,8)}px`;
+        });
+        path.addEventListener('mouseleave',()=>{tooltip.hidden=true;});
+        path.addEventListener('click',()=>onSelect(st.abbr));
+      }
+      svg.appendChild(path);
+    });
+    el.appendChild(svg);
   } catch (err) {
     console.error('Geographic map failed; falling back to comparison tiles.', err);
     document.getElementById('geoWrap').hidden = true;
@@ -201,12 +201,14 @@ function renderCountyPanel(state, counties) {
 }
 
 function renderExecutiveIntel(states, events) {
-  document.getElementById('changePreview').innerHTML = events.changes.slice(0,3).map(e => intelRow(e.date,e.abbr,e.headline,e.category)).join('');
-  document.getElementById('radarPreview').innerHTML = events.radar.slice(0,3).map(e => intelRow(e.date,e.abbr,e.headline,e.risk)).join('');
-  const movers = states.filter(s => s.trend.includes('↓')).sort((a,b) => (trendRank[b.trend]-trendRank[a.trend]) || (riskRank[b.forward_policy_risk]-riskRank[a.forward_policy_risk]) || (a.overall_score-b.overall_score)).slice(0,5);
-  document.getElementById('moversPreview').innerHTML = movers.map(s => `<button class="mover" data-abbr="${s.abbr}"><span>${s.abbr}</span><b>${s.overall_score}</b><em>${s.trend}</em><small>${s.forward_policy_risk}</small></button>`).join('');
-  document.getElementById('changesFeed').innerHTML = events.changes.map(e => feedCard(e,'change')).join('');
-  document.getElementById('radarFeed').innerHTML = events.radar.map(e => feedCard(e,'radar')).join('');
+  const changes = Array.isArray(events?.changes) ? events.changes : [];
+  const radar = Array.isArray(events?.radar) ? events.radar : [];
+  document.getElementById('changePreview').innerHTML = changes.slice(0,3).map(e => intelRow(e.date,e.abbr,e.headline,e.category)).join('') || '<p class="muted">No recent changes loaded.</p>';
+  document.getElementById('radarPreview').innerHTML = radar.slice(0,3).map(e => intelRow(e.date,e.abbr,e.headline,e.risk)).join('') || '<p class="muted">No forward catalysts loaded.</p>';
+  const movers = states.filter(s => String(s.trend||'').includes('↓')).sort((a,b) => (trendRank[b.trend]||0)-(trendRank[a.trend]||0) || (riskRank[b.forward_policy_risk]||0)-(riskRank[a.forward_policy_risk]||0) || a.overall_score-b.overall_score).slice(0,5);
+  document.getElementById('moversPreview').innerHTML = movers.map(s => `<button class="mover" data-abbr="${s.abbr}"><span>${s.abbr}</span><b>${s.overall_score}</b><em>${s.trend}</em><small>${s.forward_policy_risk}</small></button>`).join('') || '<p class="muted">No deteriorating states loaded.</p>';
+  document.getElementById('changesFeed').innerHTML = changes.map(e => feedCard(e,'change')).join('');
+  document.getElementById('radarFeed').innerHTML = radar.map(e => feedCard(e,'radar')).join('');
 }
 
 function intelRow(date,abbr,headline,tag){ return `<div class="intel-row"><div><span>${formatDate(date)} · ${abbr}</span><b>${headline}</b></div><small>${tag}</small></div>`; }
