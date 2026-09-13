@@ -1,5 +1,5 @@
 {
-  "version": "v0.5",
+  "version": "v0.6",
   "state_score_formula": "mean(power_energy, incentives_tax, local, political_regulatory, water_environmental) * 20",
   "state_dimensions": [
     {
@@ -119,11 +119,11 @@
     }
   ],
   "trend_labels": [
-    "↑↑",
-    "↑",
-    "→",
-    "↓",
-    "↓↓"
+    "\u2191\u2191",
+    "\u2191",
+    "\u2192",
+    "\u2193",
+    "\u2193\u2193"
   ],
   "forward_policy_risk_labels": [
     "LOW",

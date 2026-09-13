@@ -1,88 +1,40 @@
-# Data Center Policy Intelligence — GitHub App v0.5
+# STACK Policy Intelligence v0.6
 
-This package converts the Data Center Policy Intelligence workbook into a GitHub Pages-ready interactive app.
+Interactive U.S. data-center policy intelligence prototype.
 
-## What this adds
+## Core model
+Five equal-weight dimensions:
+- Power & Energy
+- Incentives & Tax
+- Local
+- Political & Regulatory
+- Water & Environmental
 
-- Five-factor state policy model:
-  - Power & Energy
-  - Incentives & Tax
-  - Local
-  - Political & Regulatory
-  - Water & Environmental
-- County-level Local intelligence layer built for HeatMap data
-- Worked Los Angeles County example
-- Trend, Forward Policy Risk, Confidence, Posture and source basis fields
-- Static web UI for GitHub Pages
-- JSON source-of-truth files and validation tests
+Current policy score is separate from **Trend** and **Forward Policy Risk**.
 
-## Data model
+## Local layer
+County Local = 40% HeatMap Community Opposition + 50% Local Policy & Entitlements + 10% Development Precedent.
 
-```text
-data/states.json       50-state policy scores
-data/counties.json     county HeatMap / Local layer
-data/methodology.json  scoring rules and labels
-```
+## Files for GitHub Pages
+This release is intentionally **flat/root-level** for easy browser upload:
+- `index.html`
+- `app.js`
+- `scoring.js`
+- `style.css`
+- `states.json`
+- `counties.json`
+- `methodology.json`
+- `events.json`
 
-## Local score method
+## v0.6 additions
+- Geographic U.S. map using `us-atlas` + D3/TopoJSON from jsDelivr
+- Preserved 50-state comparison tile view
+- Richer State Intelligence Card
+- What's Changed feed
+- Policy Movers
+- Forward Radar
+- County Local worked layer (Los Angeles County loaded)
+- Provisional / low-confidence visual treatment
 
-County Local Score =
-
-```text
-40% Community Opposition + 50% Local Policy & Entitlements + 10% Development Precedent
-```
-
-The HeatMap Opposition Intensity Index is converted to a 1.0–5.0 Community Score, where higher HeatMap opposition means a lower Community Score.
-
-## Refresh from Excel
-
-Place the latest workbook at:
-
-```text
-source/STACK_Policy_Intelligence_50_State_Data_v0.4.xlsx
-```
-
-Then run:
-
-```bash
-python scripts/excel_to_json.py source/STACK_Policy_Intelligence_50_State_Data_v0.4.xlsx --out data
-python -m pytest
-python build.py
-```
-
-Open `dist/index.html` locally with a static server, or publish the root files through GitHub Pages.
-
-## GitHub Pages
-
-Simplest deployment:
-
-1. Copy this package into the existing `datacenter-map` repo.
-2. Commit the files.
-3. Ensure GitHub Pages serves from the repository root or `/docs`/`dist` depending on your current settings.
-4. If your existing repo already has `index.html`, either replace it or move this app into `/policy/`.
-
-## Suggested repo structure
-
-```text
-/
-  index.html
-  build.py
-  data/
-    states.json
-    counties.json
-    methodology.json
-  src/
-    app.js
-    scoring.js
-    style.css
-  scripts/
-    excel_to_json.py
-  tests/
-    test_policy_data.py
-  source/
-    STACK_Policy_Intelligence_50_State_Data_v0.4.xlsx
-```
-
-## Governance rule
-
-The website should not become a separate scoring source. Update the Excel/JSON source data first, then regenerate the app and PPT from the same model.
+## Deployment
+GitHub Pages can publish directly from the root of the `policy-v1` branch. Upload all root files and commit to that branch; Pages should republish automatically.

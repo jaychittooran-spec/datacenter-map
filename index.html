@@ -3,69 +3,101 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="STACK Policy Intelligence — U.S. data center policy landscape" />
   <title>STACK Policy Intelligence</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-  <header>
+  <header class="hero">
     <div>
       <p class="eyebrow">STACK Policy Intelligence</p>
       <h1>U.S. Data Center Policy Landscape</h1>
-      <p class="sub">Five-factor policy score · county-level HeatMap local layer · forward policy risk</p>
+      <p class="sub">Current policy · direction of travel · county-level local intelligence · forward policy risk</p>
     </div>
-    <div class="version">v0.5 · Sep 2026</div>
+    <div class="version">v0.6 · Sep 2026</div>
   </header>
 
   <section id="metrics" class="metrics"></section>
 
-  <main>
-    <section class="map-panel">
+  <section class="intel-strip shell">
+    <article class="intel-card">
+      <div class="intel-head"><div><p class="kicker">Latest</p><h2>What's Changed</h2></div><button class="text-btn" data-scroll="changesPanel">View all</button></div>
+      <div id="changePreview" class="intel-list"></div>
+    </article>
+    <article class="intel-card">
+      <div class="intel-head"><div><p class="kicker">Momentum</p><h2>Policy Movers</h2></div></div>
+      <div id="moversPreview" class="movers"></div>
+    </article>
+    <article class="intel-card">
+      <div class="intel-head"><div><p class="kicker">Next 12–18 months</p><h2>Forward Radar</h2></div><button class="text-btn" data-scroll="radarPanel">View all</button></div>
+      <div id="radarPreview" class="intel-list"></div>
+    </article>
+  </section>
+
+  <main class="workspace shell">
+    <section class="map-panel panel">
       <div class="section-head">
         <div>
-          <h2>Policy map</h2>
-          <p>State tile map. Select a layer to view the underlying dimension.</p>
+          <p class="kicker">National landscape</p>
+          <h2>Policy Map</h2>
+          <p>Click a state to open its intelligence card. Switch layers to isolate the underlying dimension.</p>
         </div>
-        <label>Layer
-          <select id="layer">
-            <option value="overall">Overall Policy</option>
-            <option value="power_energy">Power & Energy</option>
-            <option value="incentives_tax">Incentives & Tax</option>
-            <option value="local">Local</option>
-            <option value="political_regulatory">Political & Regulatory</option>
-            <option value="water_environmental">Water & Environmental</option>
-          </select>
-        </label>
+        <div class="map-controls">
+          <label>View
+            <select id="viewMode">
+              <option value="geo">Geographic</option>
+              <option value="tiles">50-state comparison</option>
+            </select>
+          </label>
+          <label>Layer
+            <select id="layer">
+              <option value="overall">Overall Policy</option>
+              <option value="power_energy">Power & Energy</option>
+              <option value="incentives_tax">Incentives & Tax</option>
+              <option value="local">Local</option>
+              <option value="political_regulatory">Political & Regulatory</option>
+              <option value="water_environmental">Water & Environmental</option>
+            </select>
+          </label>
+        </div>
       </div>
-      <div id="stateMap" class="state-map" aria-label="US state policy tile map"></div>
-      <div class="legend"><span class="favorable">80–100 Favorable</span><span class="moderate">60–79 Moderate</span><span class="challenging">40–59 Challenging</span><span class="restrictive">&lt;40 Restrictive</span></div>
+      <div id="geoWrap" class="geo-wrap">
+        <div id="geoMap" class="geo-map" aria-label="U.S. policy map"></div>
+        <div id="mapTooltip" class="map-tooltip" hidden></div>
+      </div>
+      <div id="tileWrap" class="tile-wrap" hidden>
+        <div id="stateMap" class="state-map" aria-label="U.S. state policy tile map"></div>
+      </div>
+      <div class="legend"><span class="legend-item favorable-dot">80–100 Favorable</span><span class="legend-item moderate-dot">60–79 Moderate</span><span class="legend-item challenging-dot">40–59 Challenging</span><span class="legend-item restrictive-dot">&lt;40 Restrictive</span><span class="legend-item provisional-dot">Low-confidence data is visually muted</span></div>
     </section>
 
-    <aside id="stateCard" class="state-card"></aside>
+    <aside id="stateCard" class="state-card panel"></aside>
   </main>
 
-  <section class="table-panel">
+  <section id="countyPanel" class="county-panel panel shell"></section>
+
+  <section class="table-panel panel shell">
     <div class="section-head">
-      <div>
-        <h2>50-state scorecard</h2>
-        <p>Current score is separate from Trend and Forward Policy Risk.</p>
-      </div>
+      <div><p class="kicker">Comparison</p><h2>50-State Scorecard</h2><p>Current score is kept separate from Trend and Forward Policy Risk.</p></div>
       <div class="filters">
         <input id="search" placeholder="Search state" />
         <select id="riskFilter"><option value="">All risks</option><option>LOW</option><option>MODERATE</option><option>ELEVATED</option><option>HIGH</option></select>
         <select id="bandFilter"><option value="">All bands</option><option>Favorable</option><option>Moderate</option><option>Challenging</option><option>Restrictive</option></select>
+        <select id="confidenceFilter"><option value="">All confidence</option><option>High</option><option>Medium</option><option>Low</option></select>
       </div>
     </div>
-    <table>
-      <thead><tr><th>State</th><th>Score</th><th>Band</th><th>Trend</th><th>Forward Risk</th><th>Confidence</th><th>STACK Posture</th></tr></thead>
-      <tbody id="stateRows"></tbody>
-    </table>
+    <div class="table-scroll"><table><thead><tr><th>State</th><th>Score</th><th>Band</th><th>Trend</th><th>Forward Risk</th><th>Confidence</th><th>STACK Posture</th></tr></thead><tbody id="stateRows"></tbody></table></div>
   </section>
 
-  <section id="methodology" class="methodology"></section>
+  <section id="changesPanel" class="feed-panel panel shell"><div class="section-head"><div><p class="kicker">Recent developments</p><h2>What's Changed</h2></div></div><div id="changesFeed" class="feed-grid"></div></section>
+  <section id="radarPanel" class="feed-panel panel shell"><div class="section-head"><div><p class="kicker">Forward catalysts</p><h2>Policy Radar</h2></div></div><div id="radarFeed" class="feed-grid"></div></section>
+  <section id="methodology" class="methodology panel shell"></section>
 
-  <footer>
-    Source of truth: <code>data/states.json</code>, <code>data/counties.json</code>, <code>data/methodology.json</code>. Use <code>scripts/excel_to_json.py</code> to refresh from the workbook.
-  </footer>
+  <footer class="shell">Source of truth: <code>states.json</code>, <code>counties.json</code>, <code>methodology.json</code>, and <code>events.json</code>. Scores are analyst judgments and should be read with confidence labels and source basis.</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
   <script type="module" src="./app.js"></script>
 </body>
 </html>

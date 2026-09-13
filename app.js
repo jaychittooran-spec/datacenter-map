@@ -1,4 +1,4 @@
-import { DIMENSIONS, overallPolicyScore, scoreBand } from './scoring.js';
+import { DIMENSIONS, scoreBand } from './scoring.js';
 
 const stateGrid = [
   ['AK','','','','','','','','','','ME'],
@@ -11,134 +11,242 @@ const stateGrid = [
 ];
 
 const bandClass = (band) => ({
-  Favorable: 'favorable',
-  Moderate: 'moderate',
-  Challenging: 'challenging',
-  Restrictive: 'restrictive',
+  Favorable: 'favorable', Moderate: 'moderate', Challenging: 'challenging', Restrictive: 'restrictive'
 }[band] || 'unknown');
 
+const riskRank = {HIGH:4, ELEVATED:3, MODERATE:2, LOW:1};
+const trendRank = {'↓↓':3,'↓':2,'→':1,'↑':0,'↑↑':0};
+
 function displayScore(value) {
-  return Number(value).toFixed(value % 1 === 0 ? 0 : 1);
+  const n = Number(value);
+  if (Number.isNaN(n)) return '—';
+  return n.toFixed(n % 1 === 0 ? 0 : 1);
+}
+
+function stageFor(state) {
+  if (String(state.status || '').toLowerCase().includes('calibration')) return 'Calibrated';
+  if (state.confidence === 'High') return 'Researched';
+  return 'Provisional';
+}
+
+function scoreForLayer(state, layerKey) {
+  if (layerKey === 'overall') return state.overall_score;
+  return Math.round(Number(state.scores[layerKey]) * 20);
+}
+
+function colorForScore(score) {
+  if (score >= 80) return '#2f9e44';
+  if (score >= 60) return '#f2b705';
+  if (score >= 40) return '#f97316';
+  return '#d92d20';
 }
 
 async function loadData() {
-  const [states, counties, methodology] = await Promise.all([
+  const [states, counties, methodology, events] = await Promise.all([
     fetch('./states.json').then(r => r.json()),
     fetch('./counties.json').then(r => r.json()),
     fetch('./methodology.json').then(r => r.json()),
+    fetch('./events.json').then(r => r.json()),
   ]);
-  return { states, counties, methodology };
+  return { states, counties, methodology, events };
 }
 
 function renderMetrics(states) {
-  const metrics = document.getElementById('metrics');
   const fav = states.filter(s => s.overall_score >= 80).length;
   const mod = states.filter(s => s.overall_score >= 60 && s.overall_score < 80).length;
   const chal = states.filter(s => s.overall_score >= 40 && s.overall_score < 60).length;
   const highRisk = states.filter(s => s.forward_policy_risk === 'HIGH').length;
-  metrics.innerHTML = `
-    <div><b>${states.length}</b><span>States tracked</span></div>
-    <div><b>${fav}</b><span>Favorable</span></div>
-    <div><b>${mod}</b><span>Moderate</span></div>
-    <div><b>${chal}</b><span>Challenging</span></div>
-    <div><b>${highRisk}</b><span>High forward risk</span></div>`;
+  const researched = states.filter(s => stateStageIsResearch(s)).length;
+  document.getElementById('metrics').innerHTML = `
+    <div class="metric"><b>${states.length}</b><span>States tracked</span></div>
+    <div class="metric"><b>${fav}</b><span>Favorable today</span></div>
+    <div class="metric"><b>${mod}</b><span>Moderate today</span></div>
+    <div class="metric"><b>${chal}</b><span>Challenging today</span></div>
+    <div class="metric"><b>${highRisk}</b><span>High forward risk</span></div>
+    <div class="metric"><b>${researched}</b><span>High-confidence states</span></div>`;
 }
 
-function renderMap(states, selectedAbbr, onSelect, layerKey = 'overall') {
+function stateStageIsResearch(s){ return s.confidence === 'High'; }
+
+function renderTileMap(states, selectedAbbr, onSelect, layerKey='overall') {
   const byAbbr = Object.fromEntries(states.map(s => [s.abbr, s]));
   const el = document.getElementById('stateMap');
   el.innerHTML = '';
   stateGrid.flat().forEach(abbr => {
     const tile = document.createElement('button');
     tile.className = 'tile';
-    if (!abbr) {
-      tile.classList.add('empty');
-      el.appendChild(tile);
-      return;
-    }
+    if (!abbr) { tile.classList.add('empty'); el.appendChild(tile); return; }
     const st = byAbbr[abbr];
-    let score = st.overall_score;
-    let band = st.score_band;
-    if (layerKey !== 'overall') {
-      score = Math.round(st.scores[layerKey] * 20);
-      band = scoreBand(score);
-    }
+    const score = scoreForLayer(st, layerKey);
+    const band = scoreBand(score);
     tile.classList.add(bandClass(band));
+    if (st.confidence === 'Low') tile.classList.add('low-confidence');
     if (abbr === selectedAbbr) tile.classList.add('selected');
     tile.innerHTML = `<span>${abbr}</span><small>${score}</small>`;
-    tile.title = `${st.state}: ${score} (${band})`;
+    tile.title = `${st.state}: ${score} · ${band} · ${st.confidence} confidence`;
     tile.addEventListener('click', () => onSelect(st.abbr));
     el.appendChild(tile);
   });
+}
+
+let geoCache = null;
+async function renderGeoMap(states, selectedAbbr, onSelect, layerKey='overall') {
+  const el = document.getElementById('geoMap');
+  const tooltip = document.getElementById('mapTooltip');
+  const byName = Object.fromEntries(states.map(s => [s.state, s]));
+  try {
+    if (!geoCache) geoCache = await d3.json('https://cdn.jsdelivr.net/npm/us-atlas@3/states-albers-10m.json');
+    const features = topojson.feature(geoCache, geoCache.objects.states).features;
+    el.innerHTML = '';
+    const svg = d3.select(el).append('svg').attr('viewBox', '0 0 975 610').attr('role','img').attr('aria-label','U.S. state policy map');
+    const path = d3.geoPath();
+    svg.append('g').selectAll('path').data(features).join('path')
+      .attr('d', path)
+      .attr('class', d => {
+        const st = byName[d.properties.name];
+        if (!st) return 'state-shape no-data';
+        return `state-shape ${st.confidence === 'Low' ? 'low-confidence' : ''} ${st.abbr === selectedAbbr ? 'selected' : ''}`;
+      })
+      .attr('fill', d => {
+        const st = byName[d.properties.name];
+        return st ? colorForScore(scoreForLayer(st, layerKey)) : '#dbe3ec';
+      })
+      .on('mousemove', (event, d) => {
+        const st = byName[d.properties.name];
+        if (!st) return;
+        const score = scoreForLayer(st, layerKey);
+        tooltip.hidden = false;
+        tooltip.innerHTML = `<b>${st.state}</b><span>${score} · ${scoreBand(score)}</span><small>${st.confidence} confidence · Trend ${st.trend} · ${st.forward_policy_risk} forward risk</small>`;
+        const rect = el.getBoundingClientRect();
+        tooltip.style.left = `${Math.min(event.clientX - rect.left + 14, rect.width - 230)}px`;
+        tooltip.style.top = `${Math.max(event.clientY - rect.top - 20, 8)}px`;
+      })
+      .on('mouseleave', () => { tooltip.hidden = true; })
+      .on('click', (_, d) => { const st = byName[d.properties.name]; if (st) onSelect(st.abbr); });
+
+    svg.append('path').datum(topojson.mesh(geoCache, geoCache.objects.states, (a,b) => a !== b))
+      .attr('class','state-borders').attr('d',path);
+  } catch (err) {
+    console.error('Geographic map failed; falling back to comparison tiles.', err);
+    document.getElementById('geoWrap').hidden = true;
+    document.getElementById('tileWrap').hidden = false;
+    document.getElementById('viewMode').value = 'tiles';
+  }
 }
 
 function renderTable(states, onSelect) {
   const q = document.getElementById('search').value.toLowerCase().trim();
   const risk = document.getElementById('riskFilter').value;
   const band = document.getElementById('bandFilter').value;
+  const confidence = document.getElementById('confidenceFilter').value;
   const filtered = states
     .filter(s => !q || s.state.toLowerCase().includes(q) || s.abbr.toLowerCase().includes(q))
     .filter(s => !risk || s.forward_policy_risk === risk)
     .filter(s => !band || s.score_band === band)
+    .filter(s => !confidence || s.confidence === confidence)
     .sort((a,b) => b.overall_score - a.overall_score);
-  const rows = filtered.map(s => `
-    <tr data-abbr="${s.abbr}">
-      <td><button class="linkish" data-abbr="${s.abbr}">${s.state}</button></td>
-      <td>${s.overall_score}</td>
+  document.getElementById('stateRows').innerHTML = filtered.map(s => `
+    <tr class="${s.confidence === 'Low' ? 'row-provisional' : ''}">
+      <td><button class="linkish" data-abbr="${s.abbr}">${s.state}</button><small class="stage-small">${stageFor(s)}</small></td>
+      <td><b>${s.overall_score}</b></td>
       <td><span class="pill ${bandClass(s.score_band)}">${s.score_band}</span></td>
-      <td>${s.trend}</td>
-      <td>${s.forward_policy_risk}</td>
-      <td>${s.confidence}</td>
-      <td>${s.stack_posture}</td>
+      <td class="trend ${s.trend.includes('↓') ? 'down' : s.trend.includes('↑') ? 'up' : ''}">${s.trend}</td>
+      <td><span class="risk ${s.forward_policy_risk.toLowerCase()}">${s.forward_policy_risk}</span></td>
+      <td>${s.confidence}</td><td>${s.stack_posture}</td>
     </tr>`).join('');
-  document.getElementById('stateRows').innerHTML = rows;
   document.querySelectorAll('button.linkish').forEach(btn => btn.addEventListener('click', () => onSelect(btn.dataset.abbr)));
 }
 
-function renderStateCard(state, counties) {
+function renderStateCard(state, counties, events) {
   const linkedCounties = counties.filter(c => c.state === state.state);
-  const dimRows = DIMENSIONS.map(d => {
-    const v = state.scores[d.key];
-    return `<div class="dim"><span>${d.label}</span><b>${displayScore(v)}</b><meter min="1" max="5" value="${v}"></meter></div>`;
+  const stateEvents = events.changes.filter(e => e.abbr === state.abbr).slice(0,3);
+  const dims = DIMENSIONS.map(d => {
+    const v = Number(state.scores[d.key]);
+    return `<div class="dim-row"><div class="dim-label"><span>${d.label}</span><b>${displayScore(v)}</b></div><div class="bar"><i style="width:${v/5*100}%"></i></div></div>`;
   }).join('');
-  const countyRows = linkedCounties.map(c => `
-    <tr><td>${c.county}</td><td>${c.heatmap_opposition_index ?? ''}</td><td>${displayScore(c.community_score ?? 0)}</td><td>${displayScore(c.rounded_county_local_score ?? 0)}</td><td>${c.confidence ?? ''}</td></tr>`).join('');
+  const eventHtml = stateEvents.length ? stateEvents.map(e => `<div class="mini-event"><span>${formatDate(e.date)}</span><b>${e.headline}</b><small>${e.category}</small></div>`).join('') : '<p class="muted">No recent material event loaded in the current feed.</p>';
+  const countyHtml = linkedCounties.length ? linkedCounties.map(c => `<div class="county-chip"><b>${c.county}</b><span>HeatMap ${c.heatmap_opposition_index} · Local ${displayScore(c.rounded_county_local_score)}/5</span></div>`).join('') : '<p class="muted">County-level HeatMap records not loaded yet.</p>';
   document.getElementById('stateCard').innerHTML = `
-    <div class="card-head"><div><h2>${state.state}</h2><p>${state.abbr} · ${state.status}</p></div><div class="score ${bandClass(state.score_band)}">${state.overall_score}</div></div>
-    <div class="badges"><span>${state.score_band}</span><span>Trend ${state.trend}</span><span>${state.forward_policy_risk} forward risk</span><span>${state.confidence} confidence</span></div>
-    <p class="thesis">${state.policy_thesis}</p>
-    <h3>Five-dimension score</h3>${dimRows}
-    <h3>STACK posture</h3><p><b>${state.stack_posture}</b></p>
-    <h3>County Local layer</h3>
-    ${linkedCounties.length ? `<table class="mini"><thead><tr><th>County</th><th>HeatMap Index</th><th>Community</th><th>County Local</th><th>Confidence</th></tr></thead><tbody>${countyRows}</tbody></table>` : '<p class="muted">No county records loaded yet.</p>'}
-    <h3>Source basis</h3><p class="source">${state.source_basis}</p>`;
+    <div class="card-head">
+      <div><p class="kicker">State intelligence</p><h2>${state.state}</h2><p>${state.abbr} · ${stageFor(state)}</p></div>
+      <div class="score-orb ${bandClass(state.score_band)}">${state.overall_score}</div>
+    </div>
+    <div class="status-grid">
+      <div><span>Current</span><b>${state.score_band}</b></div>
+      <div><span>Trend</span><b class="trend ${state.trend.includes('↓')?'down':state.trend.includes('↑')?'up':''}">${state.trend}</b></div>
+      <div><span>Forward risk</span><b>${state.forward_policy_risk}</b></div>
+      <div><span>Confidence</span><b>${state.confidence}</b></div>
+    </div>
+    <div class="thesis-block"><span>Policy thesis</span><p>${state.policy_thesis}</p></div>
+    <h3>Five-dimension score</h3>${dims}
+    <div class="posture"><span>STACK posture</span><b>${state.stack_posture}</b></div>
+    <h3>Key developments</h3><div class="mini-events">${eventHtml}</div>
+    <h3>County Local intelligence</h3><div class="county-chips">${countyHtml}</div>
+    <h3>Evidence basis</h3><p class="source">${state.source_basis}</p>`;
 }
+
+function renderCountyPanel(state, counties) {
+  const records = counties.filter(c => c.state === state.state);
+  const panel = document.getElementById('countyPanel');
+  if (!records.length) {
+    panel.innerHTML = `<div class="section-head"><div><p class="kicker">County Local layer</p><h2>${state.state}: county coverage expanding</h2><p>HeatMap opposition, local policy/entitlements and development precedent will roll up to the state Local score as county records are added.</p></div><div class="formula">40% Opposition + 50% Policy + 10% Precedent</div></div>`;
+    return;
+  }
+  panel.innerHTML = `<div class="section-head"><div><p class="kicker">County Local layer</p><h2>${state.state}: worked county intelligence</h2><p>County scores are evidence inputs to the statewide Local dimension, not substitutes for the state score.</p></div><div class="formula">40% Opposition + 50% Policy + 10% Precedent</div></div>
+  <div class="county-grid">${records.map(c => `
+    <article class="county-card"><div class="county-card-head"><div><h3>${c.county}</h3><p>${c.source}</p></div><div class="county-score">${displayScore(c.rounded_county_local_score)}</div></div>
+      <div class="county-metrics"><div><span>HeatMap opposition</span><b>${c.heatmap_opposition_index}</b></div><div><span>Community</span><b>${displayScore(c.community_score)}</b></div><div><span>Policy / entitlements</span><b>${displayScore(c.local_policy_entitlements_score)}</b></div><div><span>Precedent</span><b>${displayScore(c.development_precedent_score)}</b></div></div>
+      <p>${c.analyst_rationale}</p><div class="county-foot"><span>${c.operating_dc_mw}+ MW operating</span><span>${c.planned_construction_dc_mw}+ MW planned / construction</span><span>${c.contested_dc_projects} contested projects</span></div>
+    </article>`).join('')}</div>`;
+}
+
+function renderExecutiveIntel(states, events) {
+  document.getElementById('changePreview').innerHTML = events.changes.slice(0,3).map(e => intelRow(e.date,e.abbr,e.headline,e.category)).join('');
+  document.getElementById('radarPreview').innerHTML = events.radar.slice(0,3).map(e => intelRow(e.date,e.abbr,e.headline,e.risk)).join('');
+  const movers = states.filter(s => s.trend.includes('↓')).sort((a,b) => (trendRank[b.trend]-trendRank[a.trend]) || (riskRank[b.forward_policy_risk]-riskRank[a.forward_policy_risk]) || (a.overall_score-b.overall_score)).slice(0,5);
+  document.getElementById('moversPreview').innerHTML = movers.map(s => `<button class="mover" data-abbr="${s.abbr}"><span>${s.abbr}</span><b>${s.overall_score}</b><em>${s.trend}</em><small>${s.forward_policy_risk}</small></button>`).join('');
+  document.getElementById('changesFeed').innerHTML = events.changes.map(e => feedCard(e,'change')).join('');
+  document.getElementById('radarFeed').innerHTML = events.radar.map(e => feedCard(e,'radar')).join('');
+}
+
+function intelRow(date,abbr,headline,tag){ return `<div class="intel-row"><div><span>${formatDate(date)} · ${abbr}</span><b>${headline}</b></div><small>${tag}</small></div>`; }
+function feedCard(e,kind){ return `<article class="feed-card"><div class="feed-meta"><span>${formatDate(e.date)}</span><span>${e.state}</span><span>${kind==='change'?e.category:e.risk}</span></div><h3>${e.headline}</h3><p>${e.detail}</p>${e.source?`<small>${e.source}</small>`:''}</article>`; }
+function formatDate(date){ if (date.includes('session')) return date.replace('-',' '); const d=new Date(date+'T12:00:00'); return d.toLocaleDateString('en-US',{month:'short',day:'numeric'}); }
 
 function renderMethodology(methodology) {
-  document.getElementById('methodology').innerHTML = `
-    <h2>Methodology</h2>
-    <p><b>State score:</b> ${methodology.state_score_formula}</p>
-    <p><b>County Local:</b> ${methodology.county_local_formula}</p>
-    <ul>${methodology.county_local_components.map(c => `<li><b>${c.label}</b> — ${(c.weight*100).toFixed(0)}% · ${c.source}</li>`).join('')}</ul>`;
+  document.getElementById('methodology').innerHTML = `<div class="section-head"><div><p class="kicker">Scoring standard</p><h2>Methodology</h2><p>Five equal dimensions measure current conditions; Trend and Forward Policy Risk remain outside the current score.</p></div></div>
+    <div class="method-grid"><div><h3>State score</h3><p>${methodology.state_score_formula}</p></div><div><h3>County Local</h3><p>${methodology.county_local_formula}</p></div><div><h3>Evidence discipline</h3><p>Current scores prioritize enacted law, active tariffs/orders and operative local conditions. Pending policy is weighted more heavily in Trend and Forward Policy Risk.</p></div></div>
+    <div class="component-grid">${methodology.county_local_components.map(c => `<div><b>${c.label}</b><strong>${(c.weight*100).toFixed(0)}%</strong><span>${c.source}</span></div>`).join('')}</div>`;
 }
 
-loadData().then(({ states, counties, methodology }) => {
+loadData().then(async ({states,counties,methodology,events}) => {
   let selected = 'TX';
   let layerKey = 'overall';
-  const selectState = abbr => {
+  let viewMode = 'geo';
+  const selectState = async abbr => {
     selected = abbr;
-    renderMap(states, selected, selectState, layerKey);
-    renderStateCard(states.find(s => s.abbr === selected), counties);
+    const state = states.find(s => s.abbr === selected);
+    if (viewMode === 'geo') await renderGeoMap(states, selected, selectState, layerKey); else renderTileMap(states, selected, selectState, layerKey);
+    renderStateCard(state, counties, events);
+    renderCountyPanel(state, counties);
   };
+
   renderMetrics(states);
-  renderMap(states, selected, selectState, layerKey);
-  renderTable(states, selectState);
-  renderStateCard(states.find(s => s.abbr === selected), counties);
+  renderExecutiveIntel(states,events);
+  renderTable(states,selectState);
+  renderStateCard(states.find(s=>s.abbr===selected),counties,events);
+  renderCountyPanel(states.find(s=>s.abbr===selected),counties);
   renderMethodology(methodology);
-  document.getElementById('layer').addEventListener('change', e => {
-    layerKey = e.target.value;
-    renderMap(states, selected, selectState, layerKey);
-  });
-  ['search','riskFilter','bandFilter'].forEach(id => document.getElementById(id).addEventListener('input', () => renderTable(states, selectState)));
-  console.log('STACK Policy Intelligence loaded', { states, counties });
+  await renderGeoMap(states,selected,selectState,layerKey);
+  renderTileMap(states,selected,selectState,layerKey);
+
+  document.getElementById('layer').addEventListener('change', async e => { layerKey=e.target.value; if(viewMode==='geo') await renderGeoMap(states,selected,selectState,layerKey); else renderTileMap(states,selected,selectState,layerKey); });
+  document.getElementById('viewMode').addEventListener('change', async e => { viewMode=e.target.value; const geo=viewMode==='geo'; document.getElementById('geoWrap').hidden=!geo; document.getElementById('tileWrap').hidden=geo; if(geo) await renderGeoMap(states,selected,selectState,layerKey); else renderTileMap(states,selected,selectState,layerKey); });
+  ['search','riskFilter','bandFilter','confidenceFilter'].forEach(id => document.getElementById(id).addEventListener('input',()=>renderTable(states,selectState)));
+  document.querySelectorAll('[data-scroll]').forEach(b=>b.addEventListener('click',()=>document.getElementById(b.dataset.scroll).scrollIntoView({behavior:'smooth'})));
+  document.querySelectorAll('.mover').forEach(b=>b.addEventListener('click',()=>{selectState(b.dataset.abbr); document.querySelector('.workspace').scrollIntoView({behavior:'smooth'});}));
+  console.log('STACK Policy Intelligence v0.6 loaded',{states,counties,events});
+}).catch(err => {
+  console.error(err);
+  document.body.insertAdjacentHTML('beforeend',`<div class="fatal">Unable to load policy data. ${err.message}</div>`);
 });
