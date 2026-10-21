@@ -14,7 +14,7 @@
       <h1>U.S. Data Center Policy Landscape</h1>
       <p class="sub">Current policy · direction of travel · county-level local intelligence · forward policy risk</p>
     </div>
-    <div class="version">v0.6.1 · Sep 2026</div>
+    <div class="version">Four-factor model · Oct 2026</div>
   </header>
 
   <section id="metrics" class="metrics"></section>
@@ -53,10 +53,9 @@
             <select id="layer">
               <option value="overall">Overall Policy</option>
               <option value="power_energy">Power & Energy</option>
-              <option value="incentives_tax">Incentives & Tax</option>
-              <option value="local">Local</option>
-              <option value="political_regulatory">Political & Regulatory</option>
-              <option value="water_environmental">Water & Environmental</option>
+              <option value="water">Water</option>
+              <option value="policy_regulatory_environment">Policy & Regulatory Environment</option>
+              <option value="community_sentiment">Community Sentiment</option>
             </select>
           </label>
         </div>
@@ -93,7 +92,7 @@
   <section id="radarPanel" class="feed-panel panel shell"><div class="section-head"><div><p class="kicker">Forward catalysts</p><h2>Policy Radar</h2></div></div><div id="radarFeed" class="feed-grid"></div></section>
   <section id="methodology" class="methodology panel shell"></section>
 
-  <footer class="shell">Source of truth: <code>states.json</code>, <code>counties.json</code>, <code>methodology.json</code>, and <code>events.json</code>. Scores are analyst judgments and should be read with confidence labels and source basis.</footer>
+  <footer class="shell">Source of truth: <code>states.json</code>, <code>counties.json</code>, <code>methodology.json</code>, and <code>events.json</code>. Scores are analyst assessments; review confidence and underlying evidence before decisions.</footer>
 
   <script src="./src/topojson-client.min.js"></script>
   <script type="module" src="./app.js"></script>
