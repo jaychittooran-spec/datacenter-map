@@ -19,7 +19,7 @@ const trendRank = {'↓↓':3,'↓':2,'→':1,'↑':0,'↑↑':0};
 
 function displayScore(value) {
   const n = Number(value);
-  if (Number.isNaN(n)) return '—';
+  if (value == null || value === '' || Number.isNaN(n)) return '—';
   return n.toFixed(n % 1 === 0 ? 0 : 1);
 }
 
@@ -165,7 +165,7 @@ function renderStateCard(state, counties, events) {
     return `<div class="dim-row"><div class="dim-label"><span>${d.label}</span><b>${displayScore(v)}</b></div><div class="bar"><i style="width:${v/5*100}%"></i></div></div>`;
   }).join('');
   const eventHtml = stateEvents.length ? stateEvents.map(e => `<div class="mini-event"><span>${formatDate(e.date)}</span><b>${e.headline}</b><small>${e.category}</small></div>`).join('') : '<p class="muted">No recent material event loaded in the current feed.</p>';
-  const countyHtml = linkedCounties.length ? linkedCounties.map(c => `<div class="county-chip"><b>${c.county}</b><span>HeatMap ${c.heatmap_opposition_index} · Local ${displayScore(c.rounded_county_local_score)}/5</span></div>`).join('') : '<p class="muted">County-level HeatMap records not loaded yet.</p>';
+  const countyHtml = linkedCounties.length ? linkedCounties.map(c => `<div class="county-chip"><b>${c.county}</b><span>HeatMap ${c.heatmap_opposition_index ?? "—"} · County context ${displayScore(c.rounded_county_local_score)}/5</span></div>`).join('') : '<p class="muted">County-level HeatMap records not loaded yet.</p>';
   document.getElementById('stateCard').innerHTML = `
     <div class="card-head">
       <div><p class="kicker">State intelligence</p><h2>${state.state}</h2><p>${state.abbr} · ${stageFor(state)}</p></div>
@@ -178,21 +178,21 @@ function renderStateCard(state, counties, events) {
       <div><span>Confidence</span><b>${state.confidence}</b></div>
     </div>
     <div class="thesis-block"><span>Policy thesis</span><p>${state.policy_thesis}</p></div>
-    <h3>Five-dimension score</h3>${dims}
+    <h3>Four-dimension score</h3>${dims}
     <div class="posture"><span>STACK posture</span><b>${state.stack_posture}</b></div>
     <h3>Key developments</h3><div class="mini-events">${eventHtml}</div>
-    <h3>County Local intelligence</h3><div class="county-chips">${countyHtml}</div>
-    <h3>Evidence basis</h3><p class="source">${state.source_basis}</p>`;
+    <h3>County community intelligence</h3><div class="county-chips">${countyHtml}</div>
+`;
 }
 
 function renderCountyPanel(state, counties) {
   const records = counties.filter(c => c.state === state.state);
   const panel = document.getElementById('countyPanel');
   if (!records.length) {
-    panel.innerHTML = `<div class="section-head"><div><p class="kicker">County Local layer</p><h2>${state.state}: county coverage expanding</h2><p>HeatMap opposition, local policy/entitlements and development precedent will roll up to the state Local score as county records are added.</p></div><div class="formula">40% Opposition + 50% Policy + 10% Precedent</div></div>`;
+    panel.innerHTML = `<div class="section-head"><div><p class="kicker">County evidence layer</p><h2>${state.state}: county coverage expanding</h2><p>HeatMap opposition, local policy/entitlements and development precedent will roll up to the state Community Sentiment score as county records are added.</p></div><div class="formula">Context only · Not an automatic state-score rollup</div></div>`;
     return;
   }
-  panel.innerHTML = `<div class="section-head"><div><p class="kicker">County Local layer</p><h2>${state.state}: worked county intelligence</h2><p>County scores are evidence inputs to the statewide Local dimension, not substitutes for the state score.</p></div><div class="formula">40% Opposition + 50% Policy + 10% Precedent</div></div>
+  panel.innerHTML = `<div class="section-head"><div><p class="kicker">County evidence layer</p><h2>${state.state}: worked county intelligence</h2><p>County scores are evidence inputs to the statewide Community Sentiment dimension, not substitutes for the state score.</p></div><div class="formula">Context only · Not an automatic state-score rollup</div></div>
   <div class="county-grid">${records.map(c => `
     <article class="county-card"><div class="county-card-head"><div><h3>${c.county}</h3><p>${c.source}</p></div><div class="county-score">${displayScore(c.rounded_county_local_score)}</div></div>
       <div class="county-metrics"><div><span>HeatMap opposition</span><b>${c.heatmap_opposition_index}</b></div><div><span>Community</span><b>${displayScore(c.community_score)}</b></div><div><span>Policy / entitlements</span><b>${displayScore(c.local_policy_entitlements_score)}</b></div><div><span>Precedent</span><b>${displayScore(c.development_precedent_score)}</b></div></div>
@@ -213,12 +213,12 @@ function renderExecutiveIntel(states, events) {
 
 function intelRow(date,abbr,headline,tag){ return `<div class="intel-row"><div><span>${formatDate(date)} · ${abbr}</span><b>${headline}</b></div><small>${tag}</small></div>`; }
 function feedCard(e,kind){ return `<article class="feed-card"><div class="feed-meta"><span>${formatDate(e.date)}</span><span>${e.state}</span><span>${kind==='change'?e.category:e.risk}</span></div><h3>${e.headline}</h3><p>${e.detail}</p>${e.source?`<small>${e.source}</small>`:''}</article>`; }
-function formatDate(date){ if (date.includes('session')) return date.replace('-',' '); const d=new Date(date+'T12:00:00'); return d.toLocaleDateString('en-US',{month:'short',day:'numeric'}); }
+function formatDate(date){ date=String(date||''); if (date.includes('session')) return date.replace('-',' '); const d=new Date(date+'T12:00:00'); return d.toLocaleDateString('en-US',{month:'short',day:'numeric'}); }
 
 function renderMethodology(methodology) {
-  document.getElementById('methodology').innerHTML = `<div class="section-head"><div><p class="kicker">Scoring standard</p><h2>Methodology</h2><p>Five equal dimensions measure current conditions; Trend and Forward Policy Risk remain outside the current score.</p></div></div>
-    <div class="method-grid"><div><h3>State score</h3><p>${methodology.state_score_formula}</p></div><div><h3>County Local</h3><p>${methodology.county_local_formula}</p></div><div><h3>Evidence discipline</h3><p>Current scores prioritize enacted law, active tariffs/orders and operative local conditions. Pending policy is weighted more heavily in Trend and Forward Policy Risk.</p></div></div>
-    <div class="component-grid">${methodology.county_local_components.map(c => `<div><b>${c.label}</b><strong>${(c.weight*100).toFixed(0)}%</strong><span>${c.source}</span></div>`).join('')}</div>`;
+  const components = DIMENSIONS.map(d => `<div><b>${d.label}</b><strong>${Math.round(d.weight*100)}%</strong><span>Current development environment</span></div>`).join('');
+  document.getElementById('methodology').innerHTML = `<div class="section-head"><div><p class="kicker">Scoring standard</p><h2>Methodology</h2><p>Four weighted dimensions measure current conditions. Trend and Forward Policy Risk are separate.</p></div></div>
+  <div class="method-grid"><div><h3>State score</h3><p>20 × (0.35 × Power + 0.15 × Water + 0.25 × Policy + 0.25 × Community)</p></div><div><h3>Community evidence</h3><p>HeatMap opposition and contested-project outcomes inform analyst assessment. County observations are not automatically averaged into state scores.</p></div><div><h3>Evidence discipline</h3><p>Current scores prioritize operative conditions; proposed policy primarily informs Trend and Forward Policy Risk.</p></div></div><div class="component-grid">${components}</div>`;
 }
 
 loadData().then(async ({states,counties,methodology,events}) => {
@@ -247,7 +247,7 @@ loadData().then(async ({states,counties,methodology,events}) => {
   ['search','riskFilter','bandFilter','confidenceFilter'].forEach(id => document.getElementById(id).addEventListener('input',()=>renderTable(states,selectState)));
   document.querySelectorAll('[data-scroll]').forEach(b=>b.addEventListener('click',()=>document.getElementById(b.dataset.scroll).scrollIntoView({behavior:'smooth'})));
   document.querySelectorAll('.mover').forEach(b=>b.addEventListener('click',()=>{selectState(b.dataset.abbr); document.querySelector('.workspace').scrollIntoView({behavior:'smooth'});}));
-  console.log('STACK Policy Intelligence v0.6 loaded',{states,counties,events});
+  console.log('STACK Policy Intelligence · four-factor model loaded',{states,counties,events});
 }).catch(err => {
   console.error(err);
   document.body.insertAdjacentHTML('beforeend',`<div class="fatal">Unable to load policy data. ${err.message}</div>`);
