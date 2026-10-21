@@ -1,15 +1,21 @@
+// STACK Policy Intelligence: four-factor Balanced Development model.
 export const DIMENSIONS = [
-  { key: 'power_energy', label: 'Power & Energy', short: 'Power' },
-  { key: 'incentives_tax', label: 'Incentives & Tax', short: 'Tax' },
-  { key: 'local', label: 'Local', short: 'Local' },
-  { key: 'political_regulatory', label: 'Political & Regulatory', short: 'Political' },
-  { key: 'water_environmental', label: 'Water & Environmental', short: 'Environment' },
+  { key: 'power_energy', label: 'Power & Energy', short: 'Power', weight: 0.35 },
+  { key: 'water', label: 'Water', short: 'Water', weight: 0.15 },
+  { key: 'policy_regulatory_environment', label: 'Policy & Regulatory Environment', short: 'Policy', weight: 0.25 },
+  { key: 'community_sentiment', label: 'Community Sentiment', short: 'Community', weight: 0.25 },
 ];
 
 export function overallPolicyScore(scores) {
-  const vals = DIMENSIONS.map(d => Number(scores[d.key]));
-  if (vals.some(v => Number.isNaN(v) || v < 1 || v > 5)) throw new Error('Scores must be 1.0-5.0');
-  return Math.round(vals.reduce((a, b) => a + b, 0) / vals.length * 20);
+  let total = 0;
+  for (const d of DIMENSIONS) {
+    const value = scores?.[d.key];
+    if (value == null || value === '' || !Number.isFinite(Number(value)) || Number(value) < 1 || Number(value) > 5 || !Number.isInteger(Number(value) * 2)) {
+      throw new Error(`Invalid ${d.label} score: expected 1.0-5.0 in half-point increments`);
+    }
+    total += Number(value) * d.weight;
+  }
+  return Math.round(total * 20 * 10) / 10;
 }
 
 export function scoreBand(score) {
@@ -21,7 +27,7 @@ export function scoreBand(score) {
 
 export function heatmapCommunityScore(index) {
   const x = Number(index);
-  if (Number.isNaN(x)) return null;
+  if (index == null || index === '' || !Number.isFinite(x)) return null;
   if (x <= 20) return 5.0;
   if (x <= 30) return 4.5;
   if (x <= 40) return 4.0;
@@ -33,10 +39,9 @@ export function heatmapCommunityScore(index) {
   return 1.0;
 }
 
-export function roundHalf(value) {
-  return Math.round(Number(value) * 2) / 2;
-}
+export function roundHalf(value) { return Math.round(Number(value) * 2) / 2; }
 
+// Legacy county context metric; it does not automatically set state Community Sentiment.
 export function countyLocalScore({ community_score, local_policy_entitlements_score, development_precedent_score }) {
   const raw = Number(community_score) * 0.40 + Number(local_policy_entitlements_score) * 0.50 + Number(development_precedent_score) * 0.10;
   return { raw: Number(raw.toFixed(2)), rounded: roundHalf(raw) };
