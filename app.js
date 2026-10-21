@@ -147,7 +147,7 @@ function renderTable(states, onSelect) {
     .sort((a,b) => b.overall_score - a.overall_score);
   document.getElementById('stateRows').innerHTML = filtered.map(s => `
     <tr class="${s.confidence === 'Low' ? 'row-provisional' : ''}">
-      <td><button class="linkish" data-abbr="${s.abbr}">${s.state}</button><small class="stage-small">${stageFor(s)}</small></td>
+      <td><button class="linkish" data-abbr="${s.abbr}">${s.state}</button></td>
       <td><b>${s.overall_score}</b></td>
       <td><span class="pill ${bandClass(s.score_band)}">${s.score_band}</span></td>
       <td class="trend ${s.trend.includes('↓') ? 'down' : s.trend.includes('↑') ? 'up' : ''}">${s.trend}</td>
@@ -164,11 +164,11 @@ function renderStateCard(state, counties, events) {
     const v = Number(state.scores[d.key]);
     return `<div class="dim-row"><div class="dim-label"><span>${d.label}</span><b>${displayScore(v)}</b></div><div class="bar"><i style="width:${v/5*100}%"></i></div></div>`;
   }).join('');
-  const eventHtml = stateEvents.length ? stateEvents.map(e => `<div class="mini-event"><span>${formatDate(e.date)}</span><b>${e.headline}</b><small>${e.category}</small></div>`).join('') : '<p class="muted">No recent material event loaded in the current feed.</p>';
+  const eventHtml = stateEvents.length ? stateEvents.map(e => `<div class="mini-event"><span>${formatDate(e.date)}</span><b>${e.headline}</b><small>${e.category}</small></div>`).join('') : '';
   const countyHtml = linkedCounties.length ? linkedCounties.map(c => `<div class="county-chip"><b>${c.county}</b><span>HeatMap ${c.heatmap_opposition_index ?? "—"} · County context ${displayScore(c.rounded_county_local_score)}/5</span></div>`).join('') : '<p class="muted">County-level HeatMap records not loaded yet.</p>';
   document.getElementById('stateCard').innerHTML = `
     <div class="card-head">
-      <div><p class="kicker">State intelligence</p><h2>${state.state}</h2><p>${state.abbr} · ${stageFor(state)}</p></div>
+      <div><p class="kicker">State intelligence</p><h2>${state.state}</h2><p>${state.abbr}</p></div>
       <div class="score-orb ${bandClass(state.score_band)}">${state.overall_score}</div>
     </div>
     <div class="status-grid">
@@ -247,7 +247,7 @@ loadData().then(async ({states,counties,methodology,events}) => {
   ['search','riskFilter','bandFilter','confidenceFilter'].forEach(id => document.getElementById(id).addEventListener('input',()=>renderTable(states,selectState)));
   document.querySelectorAll('[data-scroll]').forEach(b=>b.addEventListener('click',()=>document.getElementById(b.dataset.scroll).scrollIntoView({behavior:'smooth'})));
   document.querySelectorAll('.mover').forEach(b=>b.addEventListener('click',()=>{selectState(b.dataset.abbr); document.querySelector('.workspace').scrollIntoView({behavior:'smooth'});}));
-  console.log('STACK Policy Intelligence · four-factor model loaded',{states,counties,events});
+  console.log('Policy landscape loaded',{states,counties,events});
 }).catch(err => {
   console.error(err);
   document.body.insertAdjacentHTML('beforeend',`<div class="fatal">Unable to load policy data. ${err.message}</div>`);
