@@ -85,6 +85,21 @@ def add_event(slide, x, y, w, text):
     p.font.color.rgb = RGBColor(35, 55, 78)
 
 
+
+
+def standardize_opening_headings(prs):
+    """Keep summary/landscape/methodology title and subtitle typography identical."""
+    from copy import deepcopy
+    from pptx.oxml.ns import qn
+    for slide_idx in (2, 3):  # slides 3 and 4; slide 2 is the style reference
+        for shape_idx in (1, 2):
+            donor = prs.slides[1].shapes[shape_idx].text_frame.paragraphs[0]._p
+            target = prs.slides[slide_idx].shapes[shape_idx].text_frame.paragraphs[0]._p
+            old = target.find(qn('a:pPr'))
+            if old is not None:
+                target.remove(old)
+            target.insert(0, deepcopy(donor.find(qn('a:pPr'))))
+
 def main():
     wb = load_workbook(MASTER, read_only=True, data_only=True)
     for name in ['State Scores', 'Policy Events', 'County Local']:
@@ -113,6 +128,7 @@ def main():
         by_forward[str(e.get('State') or '').upper()].append(e)
 
     prs = Presentation(TEMPLATE)
+    standardize_opening_headings(prs)
     if len(prs.slides) != 59:
         raise ValueError('Template must have 59 slides')
     avg = sum(float(s['Overall Score']) for s in states) / 50
