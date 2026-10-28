@@ -1,0 +1,29 @@
+{
+  "dimensions": [
+    {
+      "field": "Power & Energy (35%)",
+      "weight": 0.35
+    },
+    {
+      "field": "Water (15%)",
+      "weight": 0.15
+    },
+    {
+      "field": "Policy & Regulatory Environment (25%)",
+      "weight": 0.25
+    },
+    {
+      "field": "Community Sentiment (25%)",
+      "weight": 0.25
+    }
+  ],
+  "formula": "20 × sum(dimension score × dimension weight)",
+  "scale": "1 to 5 per dimension; overall 20 to 100",
+  "current_policy_bands": {
+    "Favorable": 80,
+    "Moderate": 60,
+    "Challenging": 40,
+    "Restrictive": 0
+  },
+  "trend_and_forward_risk": "Reported separately from current policy score"
+}
