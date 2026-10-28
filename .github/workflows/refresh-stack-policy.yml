@@ -42,7 +42,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add STACK_Policy_Intelligence_Updated.pptx data/stack_policy_*.json
+          git add STACK_Policy_Intelligence_Updated.pptx states.json counties.json events.json methodology.json
           if ! git diff --cached --quiet; then
             git commit -m "Auto-update STACK policy presentation and data"
             git pull --rebase origin policy-v1
