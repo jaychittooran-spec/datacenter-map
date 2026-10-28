@@ -7,8 +7,8 @@
       "category": "Incentives & Tax",
       "headline": "Governor signed the End Data Center Tax Credits Act",
       "detail": "Eliminates the remaining $250 million in uncommitted Next New Jersey AI/data-center tax credits and redirects the funds.",
-      "risk": "MODERATE",
-      "source": ""
+      "risk": "HIGH",
+      "source": "Multistate report, Aug. 2026"
     },
     {
       "date": "2026-08-26",
@@ -17,8 +17,8 @@
       "category": "Power & Energy",
       "headline": "HB 233 signed; large-load tariff now required",
       "detail": "Requires large users to bear dedicated infrastructure costs through a large-load tariff and allows the PSC to deny connections if ratepayer protections are insufficient.",
-      "risk": "MODERATE",
-      "source": ""
+      "risk": "HIGH",
+      "source": "Multistate report, Aug. 2026"
     },
     {
       "date": "2026-08-18",
@@ -27,8 +27,8 @@
       "category": "Political & Regulatory",
       "headline": "Executive Order 2026-05 makes GRID requirements binding",
       "detail": "Conditions permitting and tax incentives on GRID compliance, removes AI data centers from permit fast track, and requires local approval before state permits.",
-      "risk": "MODERATE",
-      "source": ""
+      "risk": "HIGH",
+      "source": "Multistate report, Aug. 2026"
     },
     {
       "date": "2026-08-06",
@@ -37,8 +37,8 @@
       "category": "Political & Regulatory",
       "headline": "Executive Order 2026-494 raises permitting bar",
       "detail": "Directs agencies to deny permits that harm ratepayers or environmental resources and requires developers to submit energy plans.",
-      "risk": "MODERATE",
-      "source": ""
+      "risk": "HIGH",
+      "source": "Multistate report, Aug. 2026"
     },
     {
       "date": "2026-08-03",
@@ -47,8 +47,8 @@
       "category": "Power & Energy",
       "headline": "ERCOT interconnection audit halts advancing connections",
       "detail": "Governor directed PUCT and ERCOT to verify all data centers advancing through the interconnection process; noncompliant projects can be denied connection.",
-      "risk": "MODERATE",
-      "source": ""
+      "risk": "HIGH",
+      "source": "Multistate report, Aug. 2026"
     },
     {
       "date": "2026-07-31",
@@ -57,8 +57,8 @@
       "category": "Power & Energy",
       "headline": "SCC assigns dedicated transmission costs to large-load data centers",
       "detail": "Large-load customers must pay for transmission facilities built solely to serve them, establishing a stronger cost-causation precedent.",
-      "risk": "MODERATE",
-      "source": ""
+      "risk": "HIGH",
+      "source": "Multistate report, Aug. 2026"
     },
     {
       "date": "2026-07-21",
@@ -67,8 +67,8 @@
       "category": "Incentives & Tax",
       "headline": "Governor ends data-center access to ImagiNE Nebraska incentives",
       "detail": "Executive order removes incentive eligibility and creates an interagency review and data-center task force.",
-      "risk": "MODERATE",
-      "source": ""
+      "risk": "HIGH",
+      "source": "Multistate report, Aug. 2026"
     },
     {
       "date": "2026-07-14",
@@ -77,8 +77,8 @@
       "category": "Political & Regulatory",
       "headline": "Executive Order 62 creates one-year hyperscale permitting moratorium",
       "detail": "Pauses state environmental permits for hyperscale facilities of 50 MW or more while agencies develop a new regulatory framework.",
-      "risk": "MODERATE",
-      "source": ""
+      "risk": "HIGH",
+      "source": "Multistate report, Aug. 2026"
     }
   ],
   "radar": [
@@ -90,7 +90,7 @@
       "headline": "Joint Subcommittee tax-policy recommendations due",
       "detail": "Recommendations could reshape the data-center sales/use tax framework after the 2026 budget compromise.",
       "risk": "ELEVATED",
-      "source": ""
+      "source": "Multistate report, Aug. 2026"
     },
     {
       "date": "2027-01-19",
@@ -100,37 +100,37 @@
       "headline": "Statewide moratorium proposal expected in 2027 session",
       "detail": "Sponsors have previewed a two-to-five-year moratorium framework and companion legislation targeting the microgrid pathway.",
       "risk": "HIGH",
-      "source": ""
+      "source": "Multistate report, Aug. 2026"
     },
     {
-      "date": "2026-10-01",
+      "date": "2027-session",
       "state": "Texas",
       "abbr": "TX",
       "category": "Political & Regulatory",
       "headline": "Incentive repeal and new operating guardrails expected",
       "detail": "Governor has pledged to pursue sales-tax exemption repeal plus water-efficient cooling, added generation and siting requirements.",
       "risk": "HIGH",
-      "source": ""
+      "source": "Multistate report, Aug. 2026"
     },
     {
-      "date": "2026-10-01",
+      "date": "2027-session",
       "state": "Wyoming",
       "abbr": "WY",
       "category": "Political & Regulatory",
       "headline": "Policy recommendations from Governor-directed review",
       "detail": "The 2026 executive review is expected to inform legislation on water, power and responsible data-center development.",
       "risk": "ELEVATED",
-      "source": ""
+      "source": "Multistate report, Aug. 2026"
     },
     {
-      "date": "2026-10-01",
+      "date": "2027-session",
       "state": "Oregon",
       "abbr": "OR",
       "category": "Political & Regulatory",
       "headline": "Moratorium proposal and incentive framework return to legislature",
       "detail": "Legislators announced a three-year moratorium proposal while enterprise-zone eligibility remains paused pending the 2027 session.",
       "risk": "HIGH",
-      "source": ""
+      "source": "Multistate report, Aug. 2026"
     }
   ]
 }

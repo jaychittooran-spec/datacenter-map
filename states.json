@@ -13,7 +13,7 @@
     "trend": "↓",
     "forward_policy_risk": "MODERATE",
     "confidence": "High",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "B — SELECTIVE",
     "policy_thesis": "Low-regulation state with favorable incentives, but local moratoria and utility requirements are rising.",
     "source_basis": ""
@@ -32,7 +32,7 @@
     "trend": "→",
     "forward_policy_risk": "MODERATE",
     "confidence": "Low",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "C — LIMIT",
     "policy_thesis": "Supportive posture and no statewide SUT, but fragmented grid and infrastructure constraints dominate.",
     "source_basis": ""
@@ -51,7 +51,7 @@
     "trend": "↓↓",
     "forward_policy_risk": "HIGH",
     "confidence": "High",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "C — LIMIT",
     "policy_thesis": "Three-year incentive moratorium, new large-load authority, and growing local restrictions materially weaken the market.",
     "source_basis": ""
@@ -70,7 +70,7 @@
     "trend": "→",
     "forward_policy_risk": "MODERATE",
     "confidence": "Low",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "A/B — SELECTIVE",
     "policy_thesis": "Favorable incentive construct and state support; local pushback is emerging and source coverage is limited.",
     "source_basis": ""
@@ -89,7 +89,7 @@
     "trend": "↓↓",
     "forward_policy_risk": "HIGH",
     "confidence": "Medium",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "D — PAUSE",
     "policy_thesis": "No statewide SUT incentive, restrictive environmental policy, and accelerating local bans/moratoria.",
     "source_basis": ""
@@ -108,7 +108,7 @@
     "trend": "↓",
     "forward_policy_risk": "ELEVATED",
     "confidence": "Medium",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "C — LIMIT",
     "policy_thesis": "No data-center SUT incentive and growing local zoning/moratorium activity; 2026 incentive legislation failed.",
     "source_basis": ""
@@ -127,7 +127,7 @@
     "trend": "↓",
     "forward_policy_risk": "ELEVATED",
     "confidence": "Low",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "C — LIMIT",
     "policy_thesis": "Current environment is mixed; attempted closure of the incentive program signals weakening political support.",
     "source_basis": ""
@@ -146,7 +146,7 @@
     "trend": "↓",
     "forward_policy_risk": "ELEVATED",
     "confidence": "Medium",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "C — LIMIT",
     "policy_thesis": "New large-load tariff law shifts infrastructure costs and long-term obligations to large users.",
     "source_basis": ""
@@ -165,7 +165,7 @@
     "trend": "↓",
     "forward_policy_risk": "ELEVATED",
     "confidence": "Medium",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "B — SELECTIVE",
     "policy_thesis": "State preserves local authority while local moratoria spread across major jurisdictions.",
     "source_basis": ""
@@ -184,7 +184,7 @@
     "trend": "↓",
     "forward_policy_risk": "ELEVATED",
     "confidence": "High",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "C — LIMIT",
     "policy_thesis": "Strong tax incentive is offset by adverse power terms and exceptionally broad local opposition.",
     "source_basis": ""
@@ -203,7 +203,7 @@
     "trend": "→",
     "forward_policy_risk": "MODERATE",
     "confidence": "Low",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "D — PAUSE",
     "policy_thesis": "Policy scrutiny is limited today, but isolated grids create a structurally difficult large-load environment.",
     "source_basis": ""
@@ -222,7 +222,7 @@
     "trend": "↓",
     "forward_policy_risk": "ELEVATED",
     "confidence": "Medium",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "A/B — SELECTIVE",
     "policy_thesis": "Full SUT exemption and workable power backdrop remain attractive, while water and legislative scrutiny are increasing.",
     "source_basis": ""
@@ -241,7 +241,7 @@
     "trend": "↓↓",
     "forward_policy_risk": "HIGH",
     "confidence": "Medium",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "C — LIMIT",
     "policy_thesis": "State incentive processing is paused and the governor has outlined a broad restrictive framework; local action is rising.",
     "source_basis": ""
@@ -260,7 +260,7 @@
     "trend": "↓",
     "forward_policy_risk": "ELEVATED",
     "confidence": "High",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "B/C — SELECTIVE",
     "policy_thesis": "Long-duration incentives remain attractive, but restrictive power terms and widespread local moratoria create execution risk.",
     "source_basis": ""
@@ -279,7 +279,7 @@
     "trend": "↓",
     "forward_policy_risk": "ELEVATED",
     "confidence": "Medium",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "B — SELECTIVE",
     "policy_thesis": "State incentive framework remains, but local moratoria have proliferated across more than a dozen counties.",
     "source_basis": ""
@@ -298,7 +298,7 @@
     "trend": "↓",
     "forward_policy_risk": "MODERATE",
     "confidence": "High",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "A/B — SELECTIVE",
     "policy_thesis": "Excellent incentive and supportive state posture are offset by strong local opposition and moratoria.",
     "source_basis": ""
@@ -317,7 +317,7 @@
     "trend": "↓↓",
     "forward_policy_risk": "HIGH",
     "confidence": "Medium",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "C — LIMIT",
     "policy_thesis": "Governor-directed ratepayer/environment protections and a growing local moratorium wave create substantial forward risk.",
     "source_basis": ""
@@ -336,7 +336,7 @@
     "trend": "→",
     "forward_policy_risk": "LOW",
     "confidence": "High",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "A — PRIORITIZE",
     "policy_thesis": "Strong incentives, favorable state posture, and generally permissive local conditions remain a leading policy combination.",
     "source_basis": ""
@@ -355,7 +355,7 @@
     "trend": "↓",
     "forward_policy_risk": "ELEVATED",
     "confidence": "Medium",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "C — LIMIT",
     "policy_thesis": "State removed data centers from incentive programs and local moratoria expanded after the statewide moratorium veto.",
     "source_basis": ""
@@ -374,7 +374,7 @@
     "trend": "↓",
     "forward_policy_risk": "ELEVATED",
     "confidence": "Medium",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "C — LIMIT",
     "policy_thesis": "Statewide moratorium failed, but incentive restrictions and significant county-level pauses create a challenging local environment.",
     "source_basis": ""
@@ -393,7 +393,7 @@
     "trend": "↓↓",
     "forward_policy_risk": "HIGH",
     "confidence": "Medium",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "C — LIMIT",
     "policy_thesis": "State paused applications while developing stronger ratepayer, clean-energy, environmental, and community protections.",
     "source_basis": ""
@@ -412,7 +412,7 @@
     "trend": "↓",
     "forward_policy_risk": "ELEVATED",
     "confidence": "Medium",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "B/C — SELECTIVE",
     "policy_thesis": "Incentives remain protected by the governor, but repeal and moratorium packages show meaningful legislative pressure.",
     "source_basis": ""
@@ -431,7 +431,7 @@
     "trend": "↓",
     "forward_policy_risk": "ELEVATED",
     "confidence": "Medium",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "C — LIMIT",
     "policy_thesis": "Electricity SUT exemption was eliminated and multiple local moratoria are active despite statewide moratorium bills failing.",
     "source_basis": ""
@@ -450,7 +450,7 @@
     "trend": "→",
     "forward_policy_risk": "LOW",
     "confidence": "Low",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "A/B — SELECTIVE",
     "policy_thesis": "Limited adverse activity in the provided materials; current tax and local environment appear comparatively stable.",
     "source_basis": ""
@@ -469,7 +469,7 @@
     "trend": "↓",
     "forward_policy_risk": "MODERATE",
     "confidence": "Medium",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "B — SELECTIVE",
     "policy_thesis": "Innovation-zone incentives now exclude data centers and restrictive rural siting proposals indicate rising scrutiny.",
     "source_basis": ""
@@ -488,7 +488,7 @@
     "trend": "↓",
     "forward_policy_risk": "MODERATE",
     "confidence": "Medium",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "A/B — SELECTIVE",
     "policy_thesis": "No statewide SUT and supportive BTM posture remain attractive, with emerging local opposition and tariff scrutiny.",
     "source_basis": ""
@@ -507,7 +507,7 @@
     "trend": "↓↓",
     "forward_policy_risk": "HIGH",
     "confidence": "Medium",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "C — LIMIT",
     "policy_thesis": "Governor ended access to ImagiNE Nebraska incentives and launched a resource-impact task force.",
     "source_basis": ""
@@ -526,7 +526,7 @@
     "trend": "↓",
     "forward_policy_risk": "ELEVATED",
     "confidence": "Medium",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "B — SELECTIVE",
     "policy_thesis": "Meaningful abatements remain, but Reno moratorium and election-driven scrutiny increase uncertainty.",
     "source_basis": ""
@@ -545,7 +545,7 @@
     "trend": "→",
     "forward_policy_risk": "LOW",
     "confidence": "Medium",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "B — SELECTIVE",
     "policy_thesis": "Statewide moratorium failed and no major current restriction is identified; incentive effort also failed.",
     "source_basis": ""
@@ -564,7 +564,7 @@
     "trend": "↓↓",
     "forward_policy_risk": "HIGH",
     "confidence": "High",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "D — PAUSE",
     "policy_thesis": "Tax credits were eliminated, a strict large-load framework was enacted, and local bans/restrictions are widespread.",
     "source_basis": ""
@@ -583,7 +583,7 @@
     "trend": "↓↓",
     "forward_policy_risk": "HIGH",
     "confidence": "High",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "B — SELECTIVE",
     "policy_thesis": "Current microgrid flexibility is strong, but a statewide moratorium and microgrid restrictions are credible 2027 risks.",
     "source_basis": ""
@@ -602,7 +602,7 @@
     "trend": "↓↓",
     "forward_policy_risk": "HIGH",
     "confidence": "High",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "D — PAUSE",
     "policy_thesis": "Statewide environmental-permit moratorium is in force for hyperscale projects and further tax/regulatory restrictions are expected.",
     "source_basis": ""
@@ -621,7 +621,7 @@
     "trend": "↓↓",
     "forward_policy_risk": "HIGH",
     "confidence": "High",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "C/D — LIMIT",
     "policy_thesis": "Electricity SUT exemption was repealed and more than 30 local jurisdictions have enacted moratoria or bans.",
     "source_basis": ""
@@ -640,7 +640,7 @@
     "trend": "→",
     "forward_policy_risk": "MODERATE",
     "confidence": "Medium",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "A — PRIORITIZE",
     "policy_thesis": "Favorable incentives, supportive leadership and BTM using local gas remain attractive; interim study is a watch item.",
     "source_basis": ""
@@ -659,7 +659,7 @@
     "trend": "↓↓",
     "forward_policy_risk": "HIGH",
     "confidence": "High",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "C — LIMIT",
     "policy_thesis": "Permissive BTM is offset by incentive uncertainty, restrictive tariff treatment and the nation’s densest local restriction activity.",
     "source_basis": ""
@@ -678,7 +678,7 @@
     "trend": "↓",
     "forward_policy_risk": "ELEVATED",
     "confidence": "High",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "B/C — SELECTIVE",
     "policy_thesis": "Longstanding incentives remain, but new ratepayer-protection and groundwater/cooling rules materially tighten development conditions.",
     "source_basis": ""
@@ -697,7 +697,7 @@
     "trend": "↓",
     "forward_policy_risk": "HIGH",
     "confidence": "High",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "C/D — LIMIT",
     "policy_thesis": "Highly adverse power tariff, paused property-tax incentives, difficult entitlements and restrictive trajectory.",
     "source_basis": ""
@@ -716,7 +716,7 @@
     "trend": "↓↓",
     "forward_policy_risk": "HIGH",
     "confidence": "High",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "D — PAUSE",
     "policy_thesis": "Binding GRID requirements now condition permitting and incentives and materially increase infrastructure obligations.",
     "source_basis": ""
@@ -735,7 +735,7 @@
     "trend": "→",
     "forward_policy_risk": "MODERATE",
     "confidence": "Low",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "B — SELECTIVE",
     "policy_thesis": "Proposed 30-year incentive did not advance; one local outright ban is identified, leaving a mixed but not broadly restrictive picture.",
     "source_basis": ""
@@ -754,7 +754,7 @@
     "trend": "→",
     "forward_policy_risk": "MODERATE",
     "confidence": "Medium",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "B — SELECTIVE",
     "policy_thesis": "Multiple restrictive proposals failed; current statewide environment remains relatively open with some local moratorium activity.",
     "source_basis": ""
@@ -773,7 +773,7 @@
     "trend": "↓",
     "forward_policy_risk": "ELEVATED",
     "confidence": "Medium",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "C — LIMIT",
     "policy_thesis": "2026 law codified full-cost and water protections while preserving local control; incentive and moratorium bills failed.",
     "source_basis": ""
@@ -792,7 +792,7 @@
     "trend": "↓",
     "forward_policy_risk": "ELEVATED",
     "confidence": "Medium",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "B/C — SELECTIVE",
     "policy_thesis": "State-level environment is less defined, but local moratoria and restrictive zoning have spread across major jurisdictions.",
     "source_basis": ""
@@ -811,7 +811,7 @@
     "trend": "↓↓",
     "forward_policy_risk": "HIGH",
     "confidence": "High",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "B — SELECTIVE",
     "policy_thesis": "Strong current tax and local-development advantages remain, but state intervention has sharply increased power and forward policy risk.",
     "source_basis": ""
@@ -830,7 +830,7 @@
     "trend": "↓↓",
     "forward_policy_risk": "HIGH",
     "confidence": "High",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "B — SELECTIVE",
     "policy_thesis": "BTM remains favorable, but incentive restrictions, water reporting and the governor’s higher-bar framework point to tighter 2027 policy.",
     "source_basis": ""
@@ -849,7 +849,7 @@
     "trend": "→",
     "forward_policy_risk": "MODERATE",
     "confidence": "Medium",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "B — SELECTIVE",
     "policy_thesis": "Moratorium and gross-receipts financing proposals failed or were vetoed, leaving current policy less restrictive than proposals suggest.",
     "source_basis": ""
@@ -868,7 +868,7 @@
     "trend": "↓",
     "forward_policy_risk": "ELEVATED",
     "confidence": "High",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "B/C — SELECTIVE",
     "policy_thesis": "Mature market precedent is offset by higher power cost allocation, loss of by-right pathways and new tax/environmental conditions.",
     "source_basis": ""
@@ -887,7 +887,7 @@
     "trend": "↓",
     "forward_policy_risk": "HIGH",
     "confidence": "High",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "C — LIMIT",
     "policy_thesis": "Clean-energy constraints, narrowed tax benefits and multiple local pauses create a difficult and worsening environment.",
     "source_basis": ""
@@ -906,7 +906,7 @@
     "trend": "→",
     "forward_policy_risk": "LOW",
     "confidence": "Medium",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "A — PRIORITIZE",
     "policy_thesis": "State leadership prioritizes data-center attraction with supportive entitlement and BTM posture; several additional incentives were proposed.",
     "source_basis": ""
@@ -925,7 +925,7 @@
     "trend": "↓↓",
     "forward_policy_risk": "HIGH",
     "confidence": "High",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "B/C — SELECTIVE",
     "policy_thesis": "Excellent incentives remain, but a punitive large-load tariff and rapid growth in local moratoria materially increase execution risk.",
     "source_basis": ""
@@ -944,7 +944,7 @@
     "trend": "↓",
     "forward_policy_risk": "ELEVATED",
     "confidence": "High",
-    "status": "Provisional",
+    "status": "Calibrated",
     "stack_posture": "A — PRIORITIZE",
     "policy_thesis": "Full SUT exemption, strong BTM flexibility and receptive development conditions remain attractive; 2027 recommendations create forward risk.",
     "source_basis": ""
