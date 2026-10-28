@@ -1,4 +1,4 @@
-# STACK Policy Intelligence v0.6.1
+# Data Center Policy Intelligence v0.6.1
 
 Interactive U.S. data-center policy intelligence prototype.
 
