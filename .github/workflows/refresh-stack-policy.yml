@@ -45,5 +45,6 @@ jobs:
           git add STACK_Policy_Intelligence_Updated.pptx data/stack_policy_*.json
           if ! git diff --cached --quiet; then
             git commit -m "Auto-update STACK policy presentation and data"
-            git push
+            git pull --rebase origin policy-v1
+            git push origin HEAD:policy-v1
           fi
