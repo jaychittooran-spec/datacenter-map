@@ -10,6 +10,7 @@ from pathlib import Path
 from datetime import date, datetime
 from collections import defaultdict
 import zipfile
+from copy import deepcopy
 from pptx import Presentation
 from pptx.util import Inches, Pt
 from pptx.dml.color import RGBColor
@@ -120,18 +121,59 @@ def main():
     for i, v in kpi.items():
         put(prs.slides[1].shapes[i], v)
 
+    # Dynamic four-column scorecard. Clone the approved name/score shapes and
+    # distribute the rows within each original colored panel. This avoids
+    # fixed category capacities and preserves the original slide branding.
     s3 = prs.slides[2]
-    group_defs = [('Favorable', 8, 9, 4), ('Moderate', 18, 19, 18), ('Challenging', 56, 57, 24), ('Restrictive', 106, 107, 4)]
-    for label, header_idx, first_idx, capacity in group_defs:
-        group = sorted([s for s in states if score_band(float(s['Overall Score'])) == label],
-                       key=lambda s: (-float(s['Overall Score']), s['State']))
-        if len(group) != capacity:
-            raise ValueError(f'{label} group now has {len(group)} states, but approved slide has {capacity} slots. Update layout before rebuilding.')
-        put(s3.shapes[header_idx], f'{label.upper()}  ({len(group)})')
-        for j, state in enumerate(group):
-            put(s3.shapes[first_idx + 2 * j], state['State'])
-            put(s3.shapes[first_idx + 2 * j + 1], f"{float(state['Overall Score']):.1f}")
+    definitions = [
+        ('Favorable', 8, 9, 4),
+        ('Moderate', 18, 19, 18),
+        ('Challenging', 56, 57, 24),
+        ('Restrictive', 106, 107, 4),
+    ]
+    templates = []
+    for label, heading, first, original_capacity in definitions:
+        templates.append((label, s3.shapes[heading],
+                          deepcopy(s3.shapes[first]._element),
+                          deepcopy(s3.shapes[first + 1]._element)))
+    # Remove just the 100 original state/score labels; keep panels, headers,
+    # logos, titles and footers as supplied in the approved presentation.
+    remove = []
+    for label, heading, first, original_capacity in definitions:
+        remove.extend(s3.shapes[i] for i in range(first, first + original_capacity * 2))
+    for shape in remove:
+        shape._element.getparent().remove(shape._element)
 
+    next_shape_id = max(int(x.get('id')) for x in s3.shapes._spTree.xpath('.//p:cNvPr')) + 1
+    for label, heading_shape, name_xml, value_xml in templates:
+        group = sorted((s for s in states if score_band(s['Overall Score']) == label),
+                       key=lambda s: (-s['Overall Score'], s['State']))
+        put(heading_shape, f'{label.upper()}  ({len(group)})')
+        if not group:
+            continue
+        # All groups use their existing column positions. The row pitch
+        # adapts to the number of states; all 50 will always be represented.
+        pitch = min(0.193, 4.65 / len(group))
+        font_pt = min(9.0, max(5.5, pitch * 47))
+        for j, state in enumerate(group):
+            for original, value in ((name_xml, state['State']),
+                                    (value_xml, f"{state['Overall Score']:.1f}")):
+                el = deepcopy(original)
+                props = el.xpath('.//p:cNvPr')
+                if props:
+                    props[0].set('id', str(next_shape_id))
+                    next_shape_id += 1
+                s3.shapes._spTree.append(el)
+                shape = s3.shapes[-1]
+                shape.top = Inches(2.07 + j * pitch)
+                shape.height = Inches(pitch)
+                put(shape, value)
+                tf = shape.text_frame
+                tf.margin_top = 0
+                tf.margin_bottom = 0
+                for par in tf.paragraphs:
+                    for run in par.runs:
+                        run.font.size = Pt(font_pt)
     by_state = {s['State'].upper(): s for s in states}
     for idx in range(4, 54):
         slide = prs.slides[idx]
