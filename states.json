@@ -3,13 +3,13 @@
     "state": "Alabama",
     "abbr": "AL",
     "scores": {
-      "power_energy": 4.0,
-      "water": 4.0,
-      "policy_regulatory_environment": 4.0,
-      "community_sentiment": 2.5
+      "power_energy": 1.0,
+      "water": 1.0,
+      "policy_regulatory_environment": 1.0,
+      "community_sentiment": 1.0
     },
-    "overall_score": 72.5,
-    "score_band": "Moderate",
+    "overall_score": 20.0,
+    "score_band": "Restrictive",
     "trend": "↓",
     "forward_policy_risk": "MODERATE",
     "confidence": "High",
