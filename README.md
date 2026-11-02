@@ -3,12 +3,11 @@
 Interactive U.S. data-center policy intelligence prototype.
 
 ## Core model
-Five equal-weight dimensions:
+Four equal-weight dimensions:
 - Power & Energy
-- Incentives & Tax
-- Local
-- Political & Regulatory
-- Water & Environmental
+- Water
+- Policy & Regulatory Environment
+- Community Sentiment
 
 Current policy score is separate from **Trend** and **Forward Policy Risk**.
 
